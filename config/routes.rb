@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :semesters
-
   root 'home#index'
 
 
@@ -10,7 +8,10 @@ Rails.application.routes.draw do
 
   authenticate :admin do
     get 'admin/index'
+    resources :semesters
+    resources :courses
   end
+
   devise_for :admin, controllers: {
     sessions: 'admin/sessions'
   }

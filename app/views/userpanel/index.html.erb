@@ -1,2 +1,6 @@
 <h1>Userpanel#index</h1>
 <p>Find me in app/views/userpanel/index.html.erb</p>
+
+<% @semesters.each do |semester| %>
+  <%= semester.semester_name %> <br>
+<% end %>
