@@ -3,6 +3,9 @@
 <h1>Semesters</h1>
 
 <div id="semesters">
+  <% if @semesters.length < 1 %>
+    afdafaf
+  <% end %>
   <% @semesters.each do |semester| %>
     <%= render semester %>
     <p>

@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :semesters
 
   # GET /courses or /courses.json
   def index
@@ -67,4 +68,8 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:course_name, :semester_id)
     end
+
+  def semesters
+    @semester = Semester.all
+  end
 end
