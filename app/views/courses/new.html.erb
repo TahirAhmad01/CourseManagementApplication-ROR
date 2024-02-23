@@ -1,8 +1,8 @@
 <h1>New course</h1>
 <%= @semester.length %>
-<%# if @semester.length > 0 %>
-  <%#= render "form", course: @course %>
-<%# end %>
+<% if @semester.length > 0 %>
+  <%= render "form", course: @course %>
+<% end %>
 <br>
 
 <div>
