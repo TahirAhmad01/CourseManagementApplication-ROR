@@ -28,19 +28,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_043128) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_name"
-    t.integer "semester_id", null: false
+    t.bigint "semester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["semester_id"], name: "index_courses_on_semester_id"
   end
 
   create_table "semesters", force: :cascade do |t|
-    t.string "semester_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "smesters", force: :cascade do |t|
     t.string "semester_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
