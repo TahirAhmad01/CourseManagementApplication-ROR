@@ -2,6 +2,8 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :redirect_if_admin_signed_in, only: [:new]
+
 
   # GET /resource/sign_in
   # def new
@@ -24,4 +26,10 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  private
+
+  def redirect_if_admin_signed_in
+    redirect_to admin_dashboard_path if current_admin
+  end
 end

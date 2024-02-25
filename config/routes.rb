@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
 
   authenticate :user do
-    get 'userpanel/index'
+    get 'userpanel/index', as: "users_dashboard"
   end
 
   authenticate :admin do
-    get 'admin/index'
+    get 'admin/index', as: "admin_dashboard"
     resources :semesters
     resources :courses
   end
