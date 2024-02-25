@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  # root 'home#index'
 
-
-  authenticate :user do
-    get 'userpanel/index', as: "users_dashboard"
+  authenticated :user do
+    root 'userpanel#index', as: "users_dashboard"
   end
 
-  authenticate :admin do
-    get 'admin/index', as: "admin_dashboard"
+  authenticated :admin do
+    root 'admin#index', as: "admin_dashboard"
     resources :semesters
     resources :courses
+  end
+
+  unauthenticated do
+    root to: 'home#index'
   end
 
   devise_for :admin, controllers: {
