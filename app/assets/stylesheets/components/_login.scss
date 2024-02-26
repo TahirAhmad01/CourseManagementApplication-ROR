@@ -1,0 +1,38 @@
+
+.form_login {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 50px auto 0px;
+  padding: 45px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  .button{
+     width: 125px !important;
+
+   }
+
+
+  input {
+    //font-family: $font-family;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 10px;
+    outline: 0;
+    font-size: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+
+
+    ::placeholder {
+      color: #90A4AE;
+    }
+  }
+}
+
