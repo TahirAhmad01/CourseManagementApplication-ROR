@@ -11,15 +11,16 @@
 
   h2 {
     margin-bottom: 15px;
+    font-weight: bold;
   }
 
-  .button{
-     width: 125px !important;
+  .button {
+    width: 100% !important;
+    margin: 5px 0;
+  }
 
-   }
 
-
-  input {
+  .field input {
     //font-family: $font-family;
     width: 100%;
     margin: 0 0 15px;
@@ -27,7 +28,8 @@
     outline: 0;
     font-size: 15px;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
+    border-radius: 5px;
 
 
     ::placeholder {

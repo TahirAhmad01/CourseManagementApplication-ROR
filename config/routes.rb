@@ -16,11 +16,13 @@ Rails.application.routes.draw do
   end
 
   devise_for :admin, controllers: {
-    sessions: 'admin/sessions'
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
   }
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
 
   get "up" => "rails/health#show", as: :rails_health_check
