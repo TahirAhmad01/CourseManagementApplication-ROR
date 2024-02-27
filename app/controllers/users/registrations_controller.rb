@@ -3,6 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :redirect_if_admin_signed_in, only: [:new]
+  before_action :configure_permitted_parameters_for_user
+  before_action :semesters
 
   # GET /resource/sign_up
   # def new
@@ -59,4 +62,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  protected
+
+  def configure_permitted_parameters_for_user
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthdate])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthdate])
+  end
+
+  def semesters
+    @semesters = Semester.all
+  end
+
+  def redirect_if_admin_signed_in
+    redirect_to admin_dashboard_path if current_admin
+  end
 end
