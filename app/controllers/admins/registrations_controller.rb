@@ -3,6 +3,7 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_permitted_parameters_for_admin
+  before_action :redirect_if_user_signed_in
 
   # GET /resource/sign_up
   # def new
@@ -63,5 +64,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters_for_admin
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
+  end
+  def redirect_if_user_signed_in
+    redirect_to users_dashboard_path if current_user
   end
 end

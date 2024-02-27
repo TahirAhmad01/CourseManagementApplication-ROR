@@ -1,6 +1,19 @@
 <h1>Userpanel#index</h1>
 <p>Find me in app/views/userpanel/index.html.erb</p>
 
-<% @semesters.each do |semester| %>
-  <%= semester.semester_name %> <br>
+<%# @semesters.each do |semester| %>
+<!--  <%#= semester.semester_name %> <br>-->
+<%# end %>
+<%= link_to "user Edit Profile", edit_user_registration_path %>
+
+<%= current_user.first_name %>
+<%= current_user.semester_id %>
+
+<% @courses.each do |course| %>
+  <% if course.semester_id === current_user.semester_id %>
+    <div>
+      <%= course.course_name %><br>
+      <%= course.semester_id %>
+    </div>
+  <% end %>
 <% end %>

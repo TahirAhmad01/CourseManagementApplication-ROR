@@ -1,0 +1,50 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="row">
+    <div class="field col-6">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true %>
+    </div>
+
+    <div class="field col-6">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+  <div class="row">
+
+    <div class="field col-6" >
+      <%= f.label :semester_id %><br/>
+      <%= f.collection_select :semester_id, Semester.all, :id, :semester_name, { prompt: "Select your semester" }, { class: "form-select form-select-md text-capitalize" } %>
+    </div>
+
+
+    <div class="field col-6">
+      <%= f.label :birthdate %>
+      <%= f.date_field :birthdate %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br/>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-primary navbar__right button" %>
+  </div>
+<% end %>

@@ -12,35 +12,27 @@
 
       <div class="field col-6">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, autofocus: true %>
+        <%= f.text_field :last_name %>
       </div>
     </div>
+
     <div class="field">
       <%= f.label :email %><br/>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autocomplete: "email" %>
     </div>
-
     <div class="row">
-<!--      <div class="field col-6">-->
-        <%#= f.label :semester_id %>
-        <%#= f.number_field :semester_id %>
-<!--      </div>-->
 
-      <%= f.select :semester_id, options_for_select(@semesters.map { |semester| [semester.semester_name, semester.id] }, selected: @semesters.__id__), { prompt: "Select your semester type" }, { class: "form-select form-select-md text-capitalize" } %>
+      <div class="field col-6">
+        <%= f.label :semester_id %><br/>
+        <%= f.collection_select :semester_id, Semester.all, :id, :semester_name, { prompt: "Select your semester" }, { class: "form-select form-select-md text-capitalize" } %>
+      </div>
 
-
-      <%# if @document.errors.any? %>
-        <%# @document.errors.full_messages_for(:doc_type).each do |message| %>
-<!--          <p class="text-danger"><%#= message %></p>-->
-        <%# end %>
-      <%# end %>
 
       <div class="field col-6">
         <%= f.label :birthdate %>
         <%= f.date_field :birthdate %>
       </div>
     </div>
-
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
@@ -48,6 +40,7 @@
       <% end %><br/>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
+
 
     <div class="field">
       <%= f.label :password_confirmation %><br/>
@@ -58,6 +51,6 @@
       <%= f.submit "Sign up", class: "btn btn-primary navbar__right button" %>
     </div>
   <% end %>
-
+  <%#= render "users/registrations/form" %>
   <%= render "users/shared/links" %>
 </div>

@@ -20,11 +20,11 @@
   }
 
 
-  .field input {
+  .field input, .field select {
     //font-family: $font-family;
     width: 100%;
     margin: 0 0 15px;
-    padding: 10px;
+    padding: 7px 12px;
     outline: 0;
     font-size: 15px;
     box-sizing: border-box;
