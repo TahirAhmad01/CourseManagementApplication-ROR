@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Semesters</h1>
+<h1>Semesters List</h1>
 
 <div id="semesters">
   <% if @semesters.length < 1 %>
@@ -8,9 +8,9 @@
   <% end %>
   <% @semesters.each do |semester| %>
     <%= render semester %>
-    <p>
-      <%= link_to "Show this semester", semester %>
-    </p>
+<!--    <p>-->
+      <%#= link_to "Show this semester", semester%>
+<!--    </p>-->
   <% end %>
 </div>
 

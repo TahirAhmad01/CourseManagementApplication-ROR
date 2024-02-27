@@ -1,12 +1,16 @@
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>Course name:</strong>
-    <%= course.course_name %>
-  </p>
+<div id="<%= dom_id course %>" class="col-md-3 my-2">
 
-  <p>
-    <strong>Semester:</strong>
-    <%= course.semester_id %>
-  </p>
+  <div class="card">
+    <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= course.course_name %><br></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Semester no: <%= course.semester_id %> (<%= course.semester.semester_name %>)</h6>
+      <%#= link_to "Show this course", course, class: "btn btn-primary" %>
+      <div class="row">
+      <div class="col-6 px-1"><%= link_to "Edit", edit_course_path(course.id), class: "btn btn-primary w-100" %></div>
+      <div class="col-6 px-1"><%= button_to "Destroy", course_path(course), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger w-100" %>
+      </div></div>
+    </div>
+  </div>
 
 </div>

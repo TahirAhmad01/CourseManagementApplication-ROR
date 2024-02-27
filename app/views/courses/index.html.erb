@@ -1,14 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Courses</h1>
+<div class="d-flex justify-content-between align-items-center my-3">
+  <h1>Courses List</h1>
+  <%= link_to "Add new course", new_course_path, class: "btn btn-secondary" %>
+</div>
 
-<div id="courses">
+<div id="courses" class="row">
   <% @courses.each do |course| %>
     <%= render course %>
-    <p>
-      <%= link_to "Show this course", course %>
-    </p>
   <% end %>
 </div>
 
-<%= link_to "New course", new_course_path %>
+
