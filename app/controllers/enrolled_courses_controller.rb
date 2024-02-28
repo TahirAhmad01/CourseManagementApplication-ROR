@@ -66,7 +66,12 @@ class EnrolledCoursesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_enrolled_course
-    @enrolled_course = EnrolledCourse.find(params[:id])
+    @enrolled_course = current_user.enrolled_courses.find_by(id: params[:id])
+
+    unless @enrolled_course
+      flash[:alert] = "Enrolled course not found or doesn't belong to the current user."
+      redirect_to enrolled_courses_path
+    end
   end
 
   # Only allow a list of trusted parameters through.
