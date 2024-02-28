@@ -75,4 +75,5 @@ gem "sassc-rails"
 gem "simple_form", "~> 5.1.0"
 
 
-gem "jquery", "~> 0.0.1"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
