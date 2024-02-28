@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "popper": "^1.0.1"
+  },
+  "name": "RailsTesting",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TahirAhmad01/RailsTesting.git",
+  "author": "Tahir Ahmad <tahirahmad0234@gmail.com>",
+  "license": "MIT"
+}

@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
-
 <div class="d-flex justify-content-between align-items-center my-3">
   <h1>Courses List</h1>
   <%= link_to "Add new course", new_course_path, class: "btn btn-secondary" %>
 </div>
 
-<div id="courses" class="row">
-  <% @courses.each do |course| %>
-    <%= render course %>
-  <% end %>
+<%= form_tag courses_path, method: :get, class: "form-inline" do %>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="semesterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <% if @semester %>
+        <%= @semester.semester_name %>
+      <% else %>
+        Select your semester
+      <% end %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="semesterDropdown">
+      <%= select_tag :semester_id, options_for_select(@semesters.map { |s| [s.semester_name, s.id] }, @semester.try(:id)), include_blank: true, onchange: 'this.form.submit();', class: "dropdown-item" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
 </div>
 
+
+<div id="courses_list" class="row">
+  <%= render @courses %>
+</div>
+
+<%#= turbo_stream.replace "courses_list" do %>
+  <%#= render @courses %>
+<%# end %>
 

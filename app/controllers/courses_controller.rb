@@ -4,7 +4,16 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @courses = if params[:semester_id].present?
+                 Semester.find(params[:semester_id]).courses
+               else
+                 Course.all
+               end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /courses/1 or /courses/1.json
@@ -70,6 +79,6 @@ class CoursesController < ApplicationController
     end
 
   def semesters
-    @semester = Semester.all
+    @semesters = Semester.all
   end
 end

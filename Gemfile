@@ -65,9 +65,14 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'rspec-rails', '~> 6.1.0'
 end
+
 gem "devise", "~> 4.9"
 gem "pg", "~> 1.5"
 gem "bootstrap"
 gem "sassc-rails"
 gem "simple_form", "~> 5.1.0"
+
+
+gem "jquery", "~> 0.0.1"
