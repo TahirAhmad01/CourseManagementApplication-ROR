@@ -1,26 +1,17 @@
-<!--<h1>Userpanel#index</h1>-->
-<!--<p>Find me in app/views/userpanel/index.html.erb</p>-->
-
-<%# @semesters.each do |semester| %>
-<!--  <%#= semester.semester_name %> <br>-->
-<%# end %>
 <%= link_to "user Edit Profile", edit_user_registration_path %>
 
-<%#= current_user.first_name %>
-<%#= current_user.semester_id %>
-
-<h1>your available courses</h1>
+<h1>Your available courses</h1>
 
 <div class="row">
   <% @courses.each do |course| %>
-    <% if course.semester_id === current_user.semester_id %>
+    <% if course.semester_id == current_user.semester_id %>
       <div class="col-md-3">
         <div class="card">
-          <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
+          <%= image_tag "https://i.imgur.com/ZTkt4I5.jpg", class: "card-img-top", alt: "" %>
           <div class="card-body">
-            <h5 class="card-title"><%= course.course_name %><br></h5>
+            <h5 class="card-title"><%= course.course_name %></h5>
             <h6 class="card-subtitle mb-2 text-muted">Semester no: <%= course.semester_id %></h6>
-            <a href="#" class="btn btn-primary mr-2"><i class="fas fa-link"></i> Enroll now</a>
+            <%= button_to 'Enroll now', enrolled_courses_path, method: :post, remote: true, params: { enrolled_course: { course_id: course.id, users_id: current_user.id, semester_id: current_user.semester_id} }, class: "btn btn-primary mr-2 enroll-button" %>
           </div>
         </div>
       </div>

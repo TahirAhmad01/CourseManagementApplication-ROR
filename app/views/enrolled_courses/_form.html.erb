@@ -1,0 +1,18 @@
+
+<%= simple_form_for(@enrolled_course) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :users_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.association :course %>
+    <%= f.association :semester %>
+
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+

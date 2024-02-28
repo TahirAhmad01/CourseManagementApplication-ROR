@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   # root 'home#index'
 
   authenticated :user do
     root 'userpanel#index', as: "users_dashboard"
+    resources :enrolled_courses, only: [:create, :index, :show, :destroy,]
   end
 
   authenticated :admin do
