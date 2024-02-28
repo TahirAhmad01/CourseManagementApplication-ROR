@@ -1,10 +1,8 @@
-<%= link_to "user Edit Profile", edit_user_registration_path %>
-
-<h1>Your available courses</h1>
+<h1 class="mb-3">Your Available Courses List</h1>
 
 <div class="row">
   <% @courses.each do |course| %>
-    <% if course.semester_id == current_user.semester_id %>
+    <%# if course.semester_id == current_user.semester_id %>
       <div class="col-md-3">
         <div class="card">
           <%= image_tag "https://i.imgur.com/ZTkt4I5.jpg", class: "card-img-top", alt: "" %>
@@ -15,6 +13,6 @@
           </div>
         </div>
       </div>
-    <% end %>
+    <%# end %>
   <% end %>
 </div>
