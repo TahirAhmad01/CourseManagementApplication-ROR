@@ -1,17 +1,12 @@
-<div id="<%= dom_id enrolled_course %>">
-  <p>
-    <strong>Users:</strong>
-    <%= enrolled_course.users_id %>
-  </p>
+<div id="<%= dom_id enrolled_course %>" class="col-md-3 my-2">
+  <div class="card">
+    <%= image_tag "https://i.imgur.com/ZTkt4I5.jpg", class: "card-img-top", alt: "" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= enrolled_course.course.course_name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Semester no: <%= enrolled_course.semester.semester_name %></h6>
+      <%= button_to "Cancel this enrolled course", enrolled_course, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to cancel this enrolled course?' } %>
 
-  <p>
-    <strong>Course:</strong>
-    <%= enrolled_course.course_id %>
-  </p>
-
-  <p>
-    <strong>Semester:</strong>
-    <%= enrolled_course.semester_id %>
-  </p>
+    </div>
+  </div>
 
 </div>

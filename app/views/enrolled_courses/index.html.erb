@@ -1,13 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Enrolled courses</h1>
 
-<div id="enrolled_courses">
+<div id="enrolled_courses" class="row">
   <% @enrolled_courses.each do |enrolled_course| %>
     <%= render enrolled_course %>
-    <p>
-      <%= link_to "Show this enrolled course", enrolled_course %>
-    </p>
+    <!-- <p>
+      <%#= link_to "Show this enrolled course", enrolled_course %>
+    </p> -->
   <% end %>
 </div>
 
