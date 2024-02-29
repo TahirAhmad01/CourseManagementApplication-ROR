@@ -25,7 +25,7 @@ class SemestersController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to semester_url(@semester), notice: "Semester was successfully created." }
+        format.html { redirect_to semesters_path, notice: "Semester was successfully created." }
         format.json { render :show, status: :created, location: @semester }
       else
         format.html { render :new, status: :unprocessable_entity }
