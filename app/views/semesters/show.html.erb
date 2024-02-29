@@ -13,7 +13,7 @@
 
 
     <% if @courses.length === 0 %>
-      <div class="text-danger fw-bold text-center">No course found yet</div>
+      <div class="text-danger fw-bold text-center">No course has been found yet.</div>
     <% else %>
       <% @courses.each_with_index do |course, index| %>
         <div class="d-flex align-items-center gap-3 mb-3">
@@ -32,12 +32,12 @@
 
 <div class="card my-4">
   <div class="card-header fw-semibold fs-5 py-3 px-4 text-capitalize">
-    Enrolled Users List
+    Students List
   </div>
   <div class="card-body">
 
     <% if @users.length === 0 %>
-      <div class="text-danger fw-bold text-center">No user enrolled yet</div>
+      <div class="text-danger fw-bold text-center">No students are available this semester.</div>
     <% else %>
       <% @users.each_with_index do |student, index| %>
         <div class="d-flex align-items-center gap-3 mb-3">

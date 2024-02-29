@@ -29,7 +29,6 @@
         <% end %>
 
         <% if !user_signed_in? and !admin_signed_in? %>
-
           <%= link_to user_session_path do %>
             <button type="button" class="btn btn-light">User Sign In</button>
           <% end %>

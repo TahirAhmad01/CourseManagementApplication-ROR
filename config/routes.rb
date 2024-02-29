@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     root 'admin#index', as: "admin_dashboard"
     resources :semesters
     resources :courses
+    resources :students_list
+    # config/routes.rb
+    get 'students_list/:id/mark', to: 'students_list#mark', as: 'mark_student'
+
   end
 
   unauthenticated do
