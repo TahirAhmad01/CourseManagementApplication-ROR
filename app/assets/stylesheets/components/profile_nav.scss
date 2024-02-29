@@ -6,6 +6,11 @@
   overflow: hidden;
   border-radius: 50%;
 
+  &_card{
+    height: 60px !important;
+    width: 60px !important;
+  }
+
   img {
     width: 100%;
     height: auto;

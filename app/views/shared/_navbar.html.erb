@@ -14,9 +14,12 @@
       </ul>
       <div class="d-flex align-items-center gap-2">
         <% if user_signed_in? %>
-          <h6 class="text-white m-0"><%= current_user.first_name + " "+ current_user.last_name %> ( user )</h6>
+          <div class="d-flex flex-column justify-content-end text-end">
+            <h6 class="text-white m-0"><%= current_user.first_name + " " + current_user.last_name %> ( user )</h6>
+            <small class="text-light text-xs"><%= current_user.semester.semester_name %></small>
+          </div>
         <% elsif admin_signed_in? %>
-          <h6 class="text-white m-0"><%= current_admin.first_name + " "+ current_admin.last_name %> ( admin )</h6>
+          <h6 class="text-white m-0"><%= current_admin.first_name + " " + current_admin.last_name %> ( admin )</h6>
         <% end %>
 
         <% if user_signed_in? %>

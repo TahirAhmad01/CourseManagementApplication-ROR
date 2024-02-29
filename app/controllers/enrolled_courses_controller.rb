@@ -4,7 +4,7 @@ class EnrolledCoursesController < ApplicationController
 
   # GET /enrolled_courses or /enrolled_courses.json
   def index
-    @enrolled_courses = EnrolledCourse.where(users_id: current_user.id)
+    @enrolled_courses = EnrolledCourse.where(users_id: current_user.id, semester_id: current_user.semester_id)
   end
 
   # GET /enrolled_courses/1 or /enrolled_courses/1.json

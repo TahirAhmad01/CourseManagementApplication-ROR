@@ -1,11 +1,13 @@
 <div id="<%= dom_id semester %>" class="card shadow-sm border-0 my-3">
   <div class=" d-flex justify-content-between align-items-center px-3 py-2">
     <div>
-<!--      Semester name:-->
-      <strong><%= semester.semester_name%></strong>
+
+      <strong>
+        <%= link_to semester.semester_name, semester_path(semester) %>
+      </strong>
     </div>
     <div class="d-flex gap-1">
-      <div><%= link_to "Edit", semester, class: "c_btn c_btn--light capitalized" %></div>
+      <div><%= link_to "Edit", edit_semester_path(semester), class: "c_btn c_btn--light capitalized" %></div>
       <div>
         <%= button_to "Delete", semester_path(semester), method: :delete, class: "c_btn c_btn--light capitalize" %>
       </div>
