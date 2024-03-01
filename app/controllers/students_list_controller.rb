@@ -1,5 +1,5 @@
 class StudentsListController < ApplicationController
-  before_action :student, only: %i[show mark]
+  before_action :student, only: %i[show mark create_marks]
 
   def index
     @students = User.all
@@ -11,36 +11,34 @@ class StudentsListController < ApplicationController
   end
 
   def mark
-    @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id])
-
-    if @student_enrolled_courses.empty?
-      flash[:error] = "User is not enrolled in any courses for the current semester."
-      redirect_to students_list_path(params[:id])
-      return
-    end
-
-    # Validation to check if marks are provided for all enrolled courses
-    # if params[:course_marks].nil? || params[:course_marks].values.any?(&:blank?)
-    #   flash[:error] = "Please provide marks for all enrolled courses."
-    #   redirect_to students_list_path(params[:id])
-    #   return
-    # end
-
-    # Iterate through each enrolled course
-    @student_enrolled_courses.each do |course|
-      marks = params[:course_marks]
-      # Create a mark record for the user, semester, and course
-      Mark.create(user_id: params[:id], semester_id: course.semester_id, course_id: course.course_id, marks: marks)
-    end
-
-    flash[:success] = "Marks given successfully."
-    redirect_to students_list_path(params[:id])
+    @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id], semester_id: @student.semester.id)
+    @semesters = Semester.all
   end
+
+  def create_marks
+    Rails.logger.error(params)
+    marks_params = params[:marks]
+    course_ids = params[:course_ids]
+
+    # marks_params.each do |course_id, mark|
+    #   Rails.logger.debug(course_id)
+    #   if course_ids[course_id.to_i].present? and mark.present?
+    #
+    #     Mark.create(user_id: params[:id], semester_id: @student.semester.id, course_id: course_ids[course_id.to_i], marks: mark)
+    #   else
+    #     Rails.logger.error("Course ID is missing for mark: #{mark}")
+    #   end
+    # end
+    #
+    # redirect_to mark_students_path, notice: 'Marks were successfully submitted.'
+  end
+
+
 
 
   private
 
   def student
-    @student= User.find(params[:id])
+    @student = User.find(params[:id])
   end
 end

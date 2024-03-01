@@ -1,11 +1,11 @@
-<%= form_with(model: @student, url: mark_student_path(@student), method: :post) do |form| %>
+<%= form_with(url: mark_students_path(@student), method: :post) do |form| %>
   <% @student_enrolled_courses.each do |course| %>
     <div>
-      <p><strong>Course:</strong> <%= course.course.course_name %></p>
-      <!-- Input field for entering marks -->
-      <%= form.text_field %>
+      <p><strong>Course:</strong> <%= course.course.course_name %> <%= course.course.semester.semester_name %></p>
+      <%= form.label "marks[#{course.id}]", "Marks:" %>
+      <%= form.text_field "marks[#{course.id}]", required: true %>
+      <%= form.hidden_field "course_ids[]", value: course.id %>
     </div>
   <% end %>
-
   <%= form.submit "Submit Marks" %>
 <% end %>

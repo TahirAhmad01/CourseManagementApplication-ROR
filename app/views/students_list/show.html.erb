@@ -27,7 +27,7 @@ current semester: <%= @student.semester.semester_name %><br>
                 <tr>
                   <th scope="row">1</th>
                   <td><%= course.course.course_name %></td>
-                  <td>A+</td>
+                  <td><% if course.marks === nil %> Mark pendin <% else %> <%= course.marks %><% end %></td>
                 </tr>
               <% end %>
               </tbody>
