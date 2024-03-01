@@ -11,10 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_02_29_181330) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -28,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_181330) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "courses", force: :cascade do |t|
+  create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "course_name"
     t.bigint "semester_id", null: false
     t.datetime "created_at", null: false
@@ -36,7 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_181330) do
     t.index ["semester_id"], name: "index_courses_on_semester_id"
   end
 
-  create_table "enrolled_courses", force: :cascade do |t|
+  create_table "enrolled_courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "users_id"
     t.bigint "course_id", null: false
     t.bigint "semester_id", null: false
@@ -46,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_181330) do
     t.index ["semester_id"], name: "index_enrolled_courses_on_semester_id"
   end
 
-  create_table "marks", force: :cascade do |t|
+  create_table "marks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "semester_id", null: false
     t.integer "marks"
@@ -58,18 +55,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_181330) do
     t.index ["user_id"], name: "index_marks_on_user_id"
   end
 
-  create_table "semesters", force: :cascade do |t|
+  create_table "semesters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "semester_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "student_lists", force: :cascade do |t|
+  create_table "student_lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
