@@ -1,1 +1,11 @@
-mark page
+<%= form_with(model: @student, url: mark_student_path(@student), method: :post) do |form| %>
+  <% @student_enrolled_courses.each do |course| %>
+    <div>
+      <p><strong>Course:</strong> <%= course.course.course_name %></p>
+      <!-- Input field for entering marks -->
+      <%= form.text_field %>
+    </div>
+  <% end %>
+
+  <%= form.submit "Submit Marks" %>
+<% end %>
