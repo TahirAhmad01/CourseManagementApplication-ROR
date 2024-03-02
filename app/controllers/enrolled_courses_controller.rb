@@ -39,6 +39,22 @@ class EnrolledCoursesController < ApplicationController
     end
   end
 
+  def create_marks
+    # Loop through each marked course
+    params[:marks].each do |course_id, marks|
+      enrolled_course = User.find(params[:id]).enrolled_courses.find_by(id: course_id)
+      if enrolled_course
+        enrolled_course.update(marks: marks)
+      else
+        flash[:alert] = "Failed to update marks for course with ID #{course_id}."
+        redirect_to mark_students_path(id: params[:id]) and return
+      end
+    end
+
+    # Redirect back to the page with a success message
+    redirect_to mark_students_path(id: params[:id]), notice: "Marks updated successfully."
+  end
+
   # PATCH/PUT /enrolled_courses/1 or /enrolled_courses/1.json
   def update
     respond_to do |format|

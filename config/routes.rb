@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :students_list
     # config/routes.rb
     get 'students_list/:id/mark', to: 'students_list#mark', as: 'mark_student'
-    post 'students_list/:id/mark', to: 'students_list#create_marks', as: 'mark_students'
+    post 'students_list/:id/mark', to: 'enrolled_courses#create_marks', as: 'mark_students'
 
   end
 
