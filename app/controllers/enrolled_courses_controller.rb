@@ -40,9 +40,22 @@ class EnrolledCoursesController < ApplicationController
   end
 
   def create_marks
+    find_user = User.find(params[:id])
+    @semesters = Semester.all
+    next_semester = nil
+
+    # Find the next semester
+    @semesters.each_with_index do |semester, index|
+      if semester.id == find_user.semester_id
+        next_semester = @semesters[index + 1] if index + 1 < @semesters.length
+        break
+      end
+    end
+
     # Loop through each marked course
     params[:marks].each do |course_id, marks|
-      enrolled_course = User.find(params[:id]).enrolled_courses.find_by(id: course_id)
+      enrolled_course = find_user.enrolled_courses.find_by(id: course_id)
+
       if enrolled_course
         enrolled_course.update(marks: marks)
       else
@@ -51,9 +64,17 @@ class EnrolledCoursesController < ApplicationController
       end
     end
 
+    # Update the user's semester_id if there's a next semester
+    if next_semester
+      find_user.update(semester_id: next_semester.id)
+    else
+      flash[:notice] = "You have reached the last semester."
+    end
+
     # Redirect back to the page with a success message
     redirect_to mark_students_path(id: params[:id]), notice: "Marks updated successfully."
   end
+
 
   # PATCH/PUT /enrolled_courses/1 or /enrolled_courses/1.json
   def update
