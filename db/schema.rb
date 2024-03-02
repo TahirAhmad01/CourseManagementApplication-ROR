@@ -17,10 +17,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_104749) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name"
-    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -37,9 +37,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_104749) do
     t.integer "users_id"
     t.bigint "course_id", null: false
     t.bigint "semester_id", null: false
-    t.decimal "marks", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "marks", precision: 10
     t.index ["course_id"], name: "index_enrolled_courses_on_course_id"
     t.index ["semester_id"], name: "index_enrolled_courses_on_semester_id"
   end
@@ -73,12 +73,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_104749) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
     t.bigint "semester_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["semester_id"], name: "index_users_on_semester_id"
