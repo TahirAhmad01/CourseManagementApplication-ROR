@@ -1,0 +1,42 @@
+<!--<%#= @student.first_name %><br>-->
+<!--current semester: <%#= @student.semester.semester_name %><br>-->
+<div class="accordion mb-4" id="accordionExample">
+  <% @semesters.each do |semester| %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading<%= semester.id %>">
+        <button class="accordion-button text-capitalize <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
+          <%= semester.semester_name %>
+        </button>
+      </h2>
+      <div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <% student_enrolled_courses_for_semester = @student_enrolled_courses.where(semester_id: current_user.semester_id) %>
+          <% if student_enrolled_courses_for_semester.any? %>
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course List</th>
+                <th scope="col">Mark</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% student_enrolled_courses_for_semester.each_with_index do |course, index| %>
+                <tr>
+                  <th scope="row"><%= index + 1 %></th>
+                  <td><%= course.course.course_name %></td>
+                  <td><% if course.marks.nil? %> Mark pending <% else %> <%= course.marks %><% end %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% elsif @student.semester == semester %>
+            <div>Now you are enrolled in this semester.</div>
+          <% else %>
+            <p>You are not enrolled in any courses for this semester.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
