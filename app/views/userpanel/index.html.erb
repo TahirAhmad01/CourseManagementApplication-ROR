@@ -2,9 +2,9 @@
   <div class="container py-2">
     <div class="h1 text-center text-dark" id="pageHeaderTitle">Your Available Courses</div>
     <% @courses.each do |course| %>
-      <article class="postcard light blue">
+      <article class="postcard light green">
         <a class="postcard__img_link" href="#">
-<!--          <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title"/>-->
+          <!--          <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title"/>-->
           <% if course.course_image.attached? %>
             <%= image_tag course.course_image, class: "postcard__img" %>
           <% else %>
@@ -14,20 +14,27 @@
         </a>
         <div class="postcard__text t-dark">
           <h1 class="postcard__title blue text-capitalize"><%= course.course_name %></h1>
-          <div class="postcard__subtitle small">
+          <div class="postcard__subtitle small text-capitalize fw-semibold text-secondary">
             <time datetime="2020-05-25 12:00:00">
 
-              <i class="fas fa-calendar-alt"></i> Semester no: <%= course.semester_id %> <i class="fas fa-calendar-alt mx-2"></i>Mon, May 25th 2020
+              <i class="fa-solid fa-graduation-cap"> </i><%= course.semester.semester_name %>
+              <i class="fas fa-calendar-alt mx-2"></i><%= course.created_at.strftime("%Y-%m-%d %H:%M") %>
             </time>
           </div>
           <div class="postcard__bar"></div>
-          <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat
-            asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo
-            accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo
-            iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!
+          <div class="postcard__preview-txt text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Eligendi,
+            fugiat
+            asperiores inventore beatae accusamus odit minima enim.
           </div>
           <div class="postcard__tagbox">
-            <%= button_to 'Enroll now', enrolled_courses_path, method: :post, remote: true, params: { enrolled_course: { course_id: course.id, users_id: current_user.id, semester_id: current_user.semester_id } }, class: "btn btn-sm btn-secondary mr-2 enroll-button" %>
+            <% if @enrolled_courses.exists?(course_id: course.id) %>
+              <button class="btn btn-success btn-sm" disabled><i class="fa-regular fa-circle-check"></i>
+                Enrolled
+              </button>
+            <% else %>
+              <%= button_to 'Enroll now', enrolled_courses_path, method: :post, remote: true, params: { enrolled_course: { course_id: course.id, users_id: current_user.id, semester_id: current_user.semester_id } }, class: "btn btn-sm btn-secondary mr-2 enroll-button" %>
+            <% end %>
           </div>
         </div>
       </article>

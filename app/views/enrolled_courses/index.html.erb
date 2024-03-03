@@ -1,12 +1,10 @@
-<h1>Enrolled courses</h1>
-
-<div id="enrolled_courses" class="row">
-  <% @enrolled_courses.each do |enrolled_course| %>
-    <%= render enrolled_course %>
-    <!-- <p>
-      <%#= link_to "Show this enrolled course", enrolled_course %>
-    </p> -->
-  <% end %>
-</div>
-
-<%#= link_to "New enrolled course", new_enrolled_course_path %>
+<section class="light">
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">Your Available Courses</div>
+    <div id="enrolled_courses">
+      <% @enrolled_courses.each do |enrolled_course| %>
+        <%= render enrolled_course %>
+      <% end %>
+    </div>
+  </div>
+</section>
