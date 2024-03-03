@@ -24,9 +24,14 @@
 
       <div class="field col-6">
         <%= f.label :semester_id %><br/>
-        <%= f.collection_select :semester_id, Semester.all, :id, :semester_name, { prompt: "Select your semester" }, { class: "form-select form-select-md text-capitalize" } %>
+        <% if Semester.any? %>
+          <%= f.text_field :semester_name, value: Semester.first&.semester_name, class: "form-control", readonly: true %>
+          <%= f.hidden_field :semester_id, value: Semester.first&.id %>
+        <% else %>
+          <%= f.text_field :semester_name, value: "", class: "form-control", placeholder: "No semesters available", readonly: true %>
+          <%= f.hidden_field :semester_id, value: "" %>
+        <% end %>
       </div>
-
 
       <div class="field col-6">
         <%= f.label :birthdate %>
@@ -51,6 +56,5 @@
       <%= f.submit "Sign up", class: "btn btn-primary navbar__right button" %>
     </div>
   <% end %>
-  <%#= render "users/registrations/form" %>
   <%= render "users/shared/links" %>
 </div>

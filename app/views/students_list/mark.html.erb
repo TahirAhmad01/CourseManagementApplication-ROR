@@ -3,7 +3,7 @@
     <div>
       <p><strong>Course:</strong> <%= course.course.course_name %> <%= course.course.semester.semester_name %></p>
       <%= label_tag "marks[#{course.id}]", "Marks:" %>
-      <%= text_field_tag "marks[#{course.id}]", nil, required: true %>
+      <%= text_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true %>
     </div>
   <% end %>
   <%= submit_tag "Submit Marks" %>

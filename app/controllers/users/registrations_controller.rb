@@ -4,18 +4,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :redirect_if_admin_signed_in, only: [:new, :edit]
+  before_action :set_default_semester, only: [:new]
   before_action :configure_permitted_parameters_for_user
   before_action :semesters
 
   # GET /resource/sign_up
   # def new
   #   super
+  #   @user.semester_id = Semester.first.id if Semester.any?
+  #   @semesters = Semester.all
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    if Semester.any?
+      if params[:user][:semester_id] == Semester.first.id.to_s
+        super
+      else
+        redirect_to new_user_registration_path, notice: "You can only select the first semester for registration."
+      end
+    else
+      redirect_to root_path, notice: "There are no semesters available for registration."
+    end
+  end
+
+
 
   # GET /resource/edit
   # def edit
@@ -71,6 +84,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def semesters
     @semesters = Semester.all
+  end
+
+  def set_default_semester
+    @semester_id = Semester.first.id if Semester.any?
   end
 
   def redirect_if_admin_signed_in

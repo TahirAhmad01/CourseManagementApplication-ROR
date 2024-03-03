@@ -20,14 +20,7 @@
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
     <div class="row">
-
-      <div class="field col-6">
-        <%= f.label :semester_id %><br/>
-        <%= f.collection_select :semester_id, Semester.all, :id, :semester_name, { prompt: "Select your semester" }, { class: "form-select form-select-md text-capitalize" } %>
-      </div>
-
-
-      <div class="field col-6">
+      <div class="field col-12">
         <%= f.label :birthdate %>
         <%= f.date_field :birthdate %>
       </div>
