@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :semester
   has_many :enrolled_courses, foreign_key: 'users_id'
+  has_one_attached :profile_picture
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable:recoverable,
   devise :database_authenticatable, :registerable,

@@ -2,7 +2,12 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <div class="profile-pic">
-        <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">
+        <% if current_admin.admin_profile_picture.attached? %>
+          <%= image_tag current_admin.admin_profile_picture %>
+        <% else %>
+          <!--            <img src="no-image.png" class="card-img-top" alt="...">-->
+          <%= image_tag "no-image.png", class: "card-img-top" %>
+        <% end %>
       </div>
       <!-- You can also use icon as follows: -->
       <!--  <i class="fas fa-user"></i> -->

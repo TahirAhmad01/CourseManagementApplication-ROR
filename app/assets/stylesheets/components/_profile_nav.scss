@@ -5,6 +5,7 @@
   height: 40px;
   overflow: hidden;
   border-radius: 50%;
+  object-fit: cover;
 
   &_card{
     height: 60px !important;
@@ -13,8 +14,8 @@
 
   img {
     width: 100%;
-    height: auto;
     object-fit: cover;
+    height: 100%;
   }
 }
 

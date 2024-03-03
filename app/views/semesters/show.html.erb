@@ -42,7 +42,13 @@
       <% @users.each_with_index do |student, index| %>
         <div class="d-flex align-items-center gap-3 mb-3">
           <div class="profile-pic profile-pic_card">
-            <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">
+<!--            <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">-->
+            <% if student.profile_picture.attached? %>
+              <%= image_tag student.profile_picture %>
+            <% else %>
+              <!--            <img src="no-image.png" class="card-img-top" alt="...">-->
+              <%= image_tag "no-image.png", class: "card-img-top" %>
+            <% end %>
           </div>
           <div>
             <div class="text-capitalize"><%= student.first_name + " " + student.last_name %></div>

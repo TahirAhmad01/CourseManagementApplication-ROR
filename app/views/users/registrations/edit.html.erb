@@ -33,6 +33,14 @@
       </div>
     </div>
 
+    <div class="mb-3">
+      <!--    <label for="formFile" class="form-label">Default file input example</label>-->
+      <%= f.label :profile_picture , class: "form-label" %>
+      <%= f.file_field :profile_picture, class: "form-control"%>
+      <!--    <input class="form-control" type="file" id="formFile">-->
+    </div>
+
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>

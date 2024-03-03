@@ -1,6 +1,13 @@
 <div id="<%= dom_id enrolled_course %>" class="col-md-3 my-2">
   <div class="card">
-    <%= image_tag "https://i.imgur.com/ZTkt4I5.jpg", class: "card-img-top", alt: "" %>
+    <div class="course_image">
+      <% if enrolled_course.course.course_image.attached? %>
+        <%= image_tag enrolled_course.course.course_image %>
+      <% else %>
+        <!--            <img src="no-image.png" class="card-img-top" alt="...">-->
+        <%= image_tag "no-image.png", class: "card-img-top" %>
+      <% end %>
+    </div>
     <div class="card-body">
       <h5 class="card-title"><%= enrolled_course.course.course_name %></h5>
       <h6 class="card-subtitle mb-2 text-muted">Semester no: <%= enrolled_course.semester.semester_name %></h6>

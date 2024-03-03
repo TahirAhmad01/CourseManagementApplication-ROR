@@ -62,8 +62,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
   protected
   def configure_permitted_parameters_for_admin
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :admin_profile_picture])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :admin_profile_picture])
   end
   def redirect_if_user_signed_in
     redirect_to users_dashboard_path if current_user

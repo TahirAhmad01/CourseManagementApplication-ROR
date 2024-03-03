@@ -65,8 +65,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters_for_user
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthdate, :semester_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthdate, :semester_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthdate, :semester_id, :profile_picture])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthdate, :semester_id, :profile_picture])
   end
 
   def semesters
