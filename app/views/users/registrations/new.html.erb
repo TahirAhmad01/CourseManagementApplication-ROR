@@ -28,7 +28,8 @@
           <%= f.text_field :semester_name, value: Semester.first&.semester_name, class: "form-control", readonly: true %>
           <%= f.hidden_field :semester_id, value: Semester.first&.id %>
         <% else %>
-          <%= f.text_field :semester_name, value: "", class: "form-control", placeholder: "No semesters available", readonly: true %>
+          <%= f.text_field :semester_name, value: "No semesters available", class: "form-control  border-danger text-danger", placeholder:
+            "", readonly: true %>
           <%= f.hidden_field :semester_id, value: "" %>
         <% end %>
       </div>

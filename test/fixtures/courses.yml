@@ -1,9 +1,222 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+course_one_1:
+  course_name: Introduction to Computer Science
+  semester_id: 1
 
-one:
-  course_name: MyString
-  semester: one
+course_one_2:
+  course_name: Mathematics for Computer Science
+  semester_id: 1
 
-two:
-  course_name: MyString
-  semester: two
+course_one_3:
+  course_name: Programming Fundamentals
+  semester_id: 1
+
+course_one_4:
+  course_name: Data Structures and Algorithms
+  semester_id: 1
+
+course_one_5:
+  course_name: Introduction to Programming Languages
+  semester_id: 1
+
+course_one_6:
+  course_name: Computer Networks
+  semester_id: 1
+
+course_one_7:
+  course_name: Operating Systems
+  semester_id: 1
+
+course_two_1:
+  course_name: Software Engineering Principles
+  semester_id: 2
+
+course_two_2:
+  course_name: Database Management Systems
+  semester_id: 2
+
+course_two_3:
+  course_name: Web Development Technologies
+  semester_id: 2
+
+course_two_4:
+  course_name: Human-Computer Interaction
+  semester_id: 2
+
+course_two_5:
+  course_name: Cybersecurity Fundamentals
+  semester_id: 2
+
+course_two_6:
+  course_name: Mobile Application Development
+  semester_id: 2
+
+course_two_7:
+  course_name: Cloud Computing Concepts
+  semester_id: 2
+course_three_1:
+  course_name: Artificial Intelligence
+  semester_id: 3
+
+course_three_2:
+  course_name: Machine Learning
+  semester_id: 3
+
+course_three_3:
+  course_name: Natural Language Processing
+  semester_id: 3
+
+course_three_4:
+  course_name: Robotics
+  semester_id: 3
+
+course_three_5:
+  course_name: Computer Vision
+  semester_id: 3
+
+course_three_6:
+  course_name: Big Data Analytics
+  semester_id: 3
+
+course_three_7:
+  course_name: Internet of Things (IoT) Applications
+  semester_id: 3
+
+course_four_1:
+  course_name: Advanced Algorithms
+  semester_id: 4
+
+course_four_2:
+  course_name: Distributed Systems
+  semester_id: 4
+
+course_four_3:
+  course_name: Cloud Computing Architectures
+  semester_id: 4
+
+course_four_4:
+  course_name: Quantum Computing
+  semester_id: 4
+
+course_four_5:
+  course_name: Ethical Hacking Techniques
+  semester_id: 4
+
+course_four_6:
+  course_name: Game Development Fundamentals
+  semester_id: 4
+
+course_four_7:
+  course_name: Blockchain Technologies
+  semester_id: 4
+
+course_five_1:
+  course_name: Data Science Fundamentals
+  semester_id: 5
+
+course_five_2:
+  course_name: Deep Learning Techniques
+  semester_id: 5
+
+course_five_3:
+  course_name: Computer Graphics
+  semester_id: 5
+
+course_five_4:
+  course_name: Cyber-Physical Systems
+  semester_id: 5
+
+course_five_5:
+  course_name: Augmented Reality Development
+  semester_id: 5
+
+course_five_6:
+  course_name: Natural Language Understanding
+  semester_id: 5
+
+course_five_7:
+  course_name: Secure Software Design
+  semester_id: 5
+
+course_six_1:
+  course_name: Quantum Machine Learning
+  semester_id: 6
+
+course_six_2:
+  course_name: Bioinformatics
+  semester_id: 6
+
+course_six_3:
+  course_name: Cloud-Native Application Development
+  semester_id: 6
+
+course_six_4:
+  course_name: Autonomous Systems
+  semester_id: 6
+
+course_six_5:
+  course_name: Cryptocurrency Technologies
+  semester_id: 6
+
+course_six_6:
+  course_name: Human-Robot Interaction
+  semester_id: 6
+
+course_six_7:
+  course_name: Software Testing Strategies
+  semester_id: 6
+
+course_seven_1:
+  course_name: Explainable Artificial Intelligence
+  semester_id: 7
+
+course_seven_2:
+  course_name: Quantum Information Science
+  semester_id: 7
+
+course_seven_3:
+  course_name: Edge Computing Technologies
+  semester_id: 7
+
+course_seven_4:
+  course_name: Biometric Authentication Systems
+  semester_id: 7
+
+course_seven_5:
+  course_name: Game Theory Applications
+  semester_id: 7
+
+course_seven_6:
+  course_name: Parallel Computing Paradigms
+  semester_id: 7
+
+course_seven_7:
+  course_name: Social Media Analytics
+  semester_id: 7
+
+course_eight_1:
+  course_name: Autonomous Vehicles Engineering
+  semester_id: 8
+
+course_eight_2:
+  course_name: Federated Learning
+  semester_id: 8
+
+course_eight_3:
+  course_name: Internet of Medical Things (IoMT)
+  semester_id: 8
+
+course_eight_4:
+  course_name: Quantum Cryptography
+  semester_id: 8
+
+course_eight_5:
+  course_name: Smart City Technologies
+  semester_id: 8
+
+course_eight_6:
+  course_name: Data Privacy and Ethics
+  semester_id: 8
+
+course_eight_7:
+  course_name: Augmented Intelligence Applications
+  semester_id: 8

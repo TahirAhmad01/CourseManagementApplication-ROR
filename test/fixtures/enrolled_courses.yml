@@ -1,11 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  users_id: 1
-  course: one
-  semester: one
-
-two:
-  users_id: 1
-  course: two
-  semester: two
+enrolled_course1:
+  course: course_one_1
+  semester: semester1
+  users_id: one

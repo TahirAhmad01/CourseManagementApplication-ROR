@@ -1,7 +1,31 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  semester_name: MyString
+  id: 1
+  semester_name: First Semester - The Epic Beginning!
 
 two:
-  semester_name: MyString
+  id: 2
+  semester_name: Second Semester - The Unforgettable Journey Continues!
+
+three:
+  id: 3
+  semester_name: Third Semester - The Quest for Coffee Intensifies!
+
+four:
+  id: 4
+  semester_name: Fourth Semester - The Battle of Midterms!
+
+five:
+  id: 5
+  semester_name: Fifth Semester - The Chronicles of All-Nighters!
+
+six:
+  id: 6
+  semester_name: Sixth Semester - The Adventure of Group Projects!
+
+seven:
+  id: 7
+  semester_name: Seventh Semester - The Saga of Senioritis Strikes Back!
+
+eight:
+  id: 8
+  semester_name: Eighth Semester - The Final Countdown to Graduation!
