@@ -1,9 +1,13 @@
 <section class="light">
   <div class="container py-2">
-    <div class="h1 text-center text-dark" id="pageHeaderTitle">Your Available Courses</div>
+    <div class="fs-3 mb-4 text-dark text-center">Your Enrolled Courses</div>
     <div id="enrolled_courses">
-      <% @enrolled_courses.each do |enrolled_course| %>
-        <%= render enrolled_course %>
+      <% if @enrolled_courses.length > 0 %>
+        <% @enrolled_courses.each do |enrolled_course| %>
+          <%= render enrolled_course %>
+        <% end %>
+      <% else %>
+        <div class="text-center text-danger card py-4 shadow-sm">You are not enrolled in any courses for this semester.</div>
       <% end %>
     </div>
   </div>
