@@ -3,4 +3,5 @@ class Course < ApplicationRecord
   has_one_attached :course_image
 
   validates :course_name, presence: true
+  validates :credit, presence: true
 end

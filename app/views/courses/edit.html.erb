@@ -1,10 +1,11 @@
-<h1>Editing course</h1>
-
-<%= render "form", course: @course %>
-
-<br>
-
-<div>
-  <%= link_to "Show this course", @course %> |
+<div class="mb-3">
   <%= link_to "Back to courses", courses_path %>
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Editing course</h3>
+  </div>
+  <%= render "form", course: @course %>
+</div>
+<br>

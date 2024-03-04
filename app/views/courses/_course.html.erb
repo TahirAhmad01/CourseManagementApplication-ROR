@@ -1,22 +1,30 @@
-<div id="<%= dom_id course %>" class="col-md-3 my-2">
-
-  <div class="card">
-    <!--    -->
-    <div class="course_image">
-      <% if course.course_image.attached? %>
-        <%= image_tag course.course_image %>
-      <% else %>
-        <%= image_tag "no-image.png", class: "card-img-top" %>
-      <% end %>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title"><%= course.course_name %><br></h5>
-      <h6 class="card-subtitle mb-2 text-muted">Semester no: <%= course.semester_id %>
-        (<%= course.semester.semester_name %>)</h6>
-      <%#= link_to "Show this course", course, class: "btn btn-primary" %>
-      <div class="row">
-        <div class="col-6 px-1"><%= link_to "Edit", edit_course_path(course.id), class: "btn btn-primary w-100" %></div>
-        <div class="col-6 px-1"><%= button_to "Destroy", course_path(course), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger w-100" %>
+<div id="<%= dom_id course %>" class="d-flex gap-4">
+  <div class="card mb-3 w-100" style="max-height: 170px">
+    <div class="row g-0">
+      <div class="col-md-2">
+        <% if course.course_image.attached? %>
+          <%= image_tag course.course_image, class: "img-fluid rounded-start w-100 h-100 object-fit-cover", style: "height: 100%" %>
+        <% else %>
+          <%= image_tag "no-image.png", class: "img-fluid rounded-start w-100 h-100 object-fit-cover" %>
+        <% end %>
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title"><%= course.course_name %></h5>
+          <small>Credit: <%= course.credit %> -  <%= course.semester.semester_name %></small>
+          <p class="card-text text-secondary">
+            <% if course.description? %>
+              <%= course.description %>
+            <% else %>
+              This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.
+            <% end %>
+          </p>
+          <div class="d-flex">
+            <div class="px-1"><%= link_to "Edit", edit_course_path(course.id), class: "btn btn-primary w-100 btn-sm px-4" %></div>
+            <div class="px-1"><%= button_to "Destroy", course_path(course), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger w-100 px-3" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

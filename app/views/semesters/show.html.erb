@@ -1,6 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
-<%#= render @semester %>
 <%= link_to "Back to semesters", semesters_path %>
 
 <h4 class="mb-3"></h4>
@@ -10,23 +7,7 @@
     Courses List
   </div>
   <div class="card-body">
-
-
-    <% if @courses.length === 0 %>
-      <div class="text-danger fw-bold text-center">No course has been found yet.</div>
-    <% else %>
-      <% @courses.each_with_index do |course, index| %>
-        <div class="d-flex align-items-center gap-3 mb-3">
-          <div class="profile-pic profile-pic_card">
-            <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">
-          </div>
-          <div>
-            <div class="text-capitalize"><%= course.course_name %></div>
-            <%= link_to "view course", course_path(course) %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render partial: "courses/course", collection: @courses, as: :course %>
   </div>
 </div>
 
@@ -59,12 +40,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-<!--<div>-->
-<!--  <%#= link_to "Edit this semester", edit_semester_path(@semester) %> |-->
-
-
-<%#= button_to "Destroy this semester", @semester, method: :delete %>
-<!--</div>-->
