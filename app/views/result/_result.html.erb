@@ -4,6 +4,14 @@
       <h2 class="accordion-header" id="heading<%= semester.id %>">
         <button class="accordion-button text-capitalize <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
           <%= semester.semester_name %>
+          <% if result[:cgpa] == 0 %>
+            <span class="mx-3 badge bg-danger">Failed</span>
+          <% elsif result[:cgpa] == "" %>
+            <span class="mx-3 badge bg-primary">pending</span>
+          <% else %>
+            <span class="mx-3 badge bg-success"><%= result[:cgpa] %></span>
+          <% end %>
+          <%= result[:cgpa] %>
         </button>
       </h2>
       <div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">
@@ -28,16 +36,19 @@
                   <td><%= enrolled_course.course.credit %></td>
                   <td>
                     <% if enrolled_course.marks.nil? %>
-                      Mark pending
+                      <span class="text-muted">Mark pending</span>
                     <% else %>
                       <%= enrolled_course.marks %>
                     <% end %>
                   </td>
                   <td>
                     <% if enrolled_course.marks.nil? %>
-                      Mark pending
+                      <span class="text-muted">Mark pending</span>
+                    <% elsif grade == 0 %>
+                      <span class="text-danger">Failed</span>
                     <% else %>
                       <%= grade %>
+                      (<%= grade_alpha(grade) %>)
                     <% end %>
                   </td>
                 </tr>
@@ -45,7 +56,12 @@
               <tr>
                 <td colspan="2" class="text-end">Total Mark</td>
                 <td colspan="2" class="text-center">.....</td>
-                <td class="">CGPA: <%= "%.2f" % result[:cgpa] %></td>
+                <td class="">CGPA:
+                  <% if result[:cgpa] == "" %>
+                    Pending result
+                  <% else %>
+                    <%= "%.2f" % result[:cgpa] %> ( <%= grade_alpha(result[:cgpa]) %> )
+                  <% end %></td>
               </tr>
               </tbody>
             </table>
