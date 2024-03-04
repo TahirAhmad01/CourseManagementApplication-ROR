@@ -1,17 +1,23 @@
-<%= form_tag(mark_students_path(@student), method: :post) do %>
-  <% if @student_enrolled_courses.length === 0 %>
-    Student are not enrolled in any courses for this semester.
-  <% elsif @student_enrolled_courses.length > 0 and @student_enrolled_courses.length < 3 %>
-    Student are not enrolled in at least three courses for this semester.
-  <% else %>
-    <% @student_enrolled_courses.each do |course| %>
-      <div>
-        <p><strong>Course:</strong> <%= course.course.course_name %> <%= course.course.semester.semester_name %></p>
-        <%= label_tag "marks[#{course.id}]", "Marks:" %>
-        <%= text_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true %>
-      </div>
+<div class="card">
+  <div class="card-header fw-semibold">
+    Provide course marks
+  </div>
+  <div class="card-body">
+    <%= form_tag(mark_students_path(@student), method: :post, class: "needs-validation", novalidate: true) do %>
+      <% if @student_enrolled_courses.length === 0 %>
+        <p class="card-text">Student is not enrolled in any courses for this semester.</p>
+      <% elsif @student_enrolled_courses.length > 0 and @student_enrolled_courses.length < 3 %>
+        <p class="card-text">Student is not enrolled in at least three courses for this semester.</p>
+      <% else %>
+        <% @student_enrolled_courses.each do |course| %>
+          <div class="mb-3">
+            <%= label_tag "course_#{course.id}", "#{course.course.course_name} #{course.course.semester
+              .semester_name}", class: 'form-label fw-semibold'%>
+            <%= text_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true, class: "form-control" %>
+          </div>
+        <% end %>
+        <%= submit_tag "Submit Marks", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
-    <%= submit_tag "Submit Marks" %>
-  <% end %>
-<% end %>
-
+  </div>
+</div>

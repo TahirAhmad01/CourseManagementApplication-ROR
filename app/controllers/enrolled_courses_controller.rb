@@ -65,6 +65,8 @@ class EnrolledCoursesController < ApplicationController
 
     if params[:semester_id] === find_user.semester_id and next_semester.present?
       find_user.update(semester_id: next_semester.id)
+    elsif !params[:params].present? and next_semester.present?
+      find_user.update(semester_id: next_semester.id)
     else
       flash[:notice] = "You have reached the last semester."
     end

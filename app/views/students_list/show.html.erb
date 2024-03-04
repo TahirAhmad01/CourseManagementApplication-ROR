@@ -1,58 +1,66 @@
-
-<%#= link_to "Back to students list", students_list_path %>
-
 <%= @student.first_name %><br>
-current semester: <%= @student.semester.semester_name %><br>
-<div class="accordion mb-4" id="accordionExample">
-  <% @semesters.each do |semester| %>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="heading<%= semester.id %>">
-        <button class="accordion-button text-capitalize <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
-          <%= semester.semester_name %>
-        </button>
-      </h2>
-      <div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <% student_enrolled_courses_for_semester = @student_enrolled_courses.where(semester_id: semester.id) %>
-          <% if student_enrolled_courses_for_semester.any? %>
-            <table class="table table-bordered">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Course List</th>
-                <th scope="col">Mark</th>
-                <th scope="col">Grade</th>
-              </tr>
-              </thead>
-              <tbody>
-              <% total_mark = 0 %>
-              <% student_enrolled_courses_for_semester.each_with_index do |course, index| %>
-                <% grade = calculate_grade(course.marks) %>
-                <% total_mark += course.marks.to_i if course.marks.present? %>
-                <tr>
-                  <th scope="row"><%= index + 1 %></th>
-                  <td><%= course.course.course_name %></td>
-                  <td><% if course.marks.nil? %> Mark not available <% else %> <%= course.marks %><% end %></td>
-                  <td><% if grade == "Failed" %> Failed <% else %> <%= grade %> <% end %></td>
-                </tr>
+Current semester: <%= @student.semester.semester_name %><br>
+<div class="card mb-3">
+  <div class="card-header d-flex justify-content-between align-items-center py-3 px-4">
+    <h3>Your Result</h3>
+    <%= link_to "Provide mark" ,mark_students_path , class: "btn btn-sm btn-primary"%>
+  </div>
+  <div class="card-body">
+    <div class="accordion mb-4" id="accordionExample">
+      <% @semesters.each do |semester| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading<%= semester.id %>">
+            <button class="accordion-button text-capitalize <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
+              <%= semester.semester_name %>
+            </button>
+          </h2>
+          <div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <% student_enrolled_courses_for_semester = @student_enrolled_courses.where(semester_id: semester.id) %>
+              <% if student_enrolled_courses_for_semester.any? %>
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Course List</th>
+                    <th scope="col">Credit</th>
+                    <th scope="col">Mark</th>
+                    <th scope="col">Grade</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% total_mark = 0 %>
+                  <% student_enrolled_courses_for_semester.each_with_index do |enrolled_course, index| %>
+                    <% grade = calculate_grade(enrolled_course.marks) %>
+                    <% total_mark += enrolled_course.marks.to_i if enrolled_course.marks.present? %>
+                    <tr>
+                      <th scope="row"><%= index + 1 %></th>
+                      <td><%= enrolled_course.course.course_name %></td>
+                      <td><%= enrolled_course.course.credit %></td>
+                      <td><% if enrolled_course.marks.nil? %> Mark pending <% else %> <%= enrolled_course.marks %> <% end %></td>
+                      <td><% if enrolled_course.marks.nil? %> Mark pending <% elsif grade == 0 %> <span class="badge bg-danger">Failed</span> <% else %> <%= grade %> (<%= grade_alpha(grade) %>) <% end %></td>
+                    </tr>
+                  <% end %>
+                  <tr>
+                    <td colspan="2" class="text-end">Total Mark</td>
+                    <td colspan="2" class="text-center"><%= total_mark %></td>
+                    <td>CGPA: <%= calculate_cgpa(student_enrolled_courses_for_semester) %></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="text-end">
+                  <%= link_to "Edit Mark", mark_student_path(@student, semester_id: semester.id), class: "btn
+                  btn-primary
+                  btn-sm px-4"%>
+                </div>
+
+            <% else %>
+                <p class="text-center text-danger py-3">You are not enrolled in any courses for this semester.</p>
               <% end %>
-              <tr>
-                <td colspan="3" class="text-end">Total Mark</td>
-                <td><%= total_mark %></td>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-end">CGPA</td>
-<!--                <td><%#= "%.2f" % calculate_cgpa(student_enrolled_courses_for_semester) %></td>-->
-              </tr>
-              </tbody>
-            </table>
-          <% elsif @student.semester == semester %>
-            <div>Now you are enrolled in this semester.</div>
-          <% else %>
-            <p>You are not enrolled in any courses for this semester.</p>
-          <% end %>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
