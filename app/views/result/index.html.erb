@@ -7,16 +7,17 @@
       <% @semester_results.each do |semester, result| %>
         <div class="accordion-item">
           <h2 class="accordion-header" id="heading<%= semester.id %>">
-            <button class="accordion-button text-capitalize <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
-              <%= semester.semester_name %>
-              <% if result[:cgpa] == 0 %>
-                <span class="mx-3 badge bg-danger">Failed</span>
-              <% elsif result[:cgpa] == "" %>
-                <span class="mx-3 badge bg-primary">pending</span>
-              <% else %>
-                <span class="mx-3 badge bg-success"><%= result[:cgpa] %></span>
-              <% end %>
-              <%= result[:cgpa] %>
+            <button class="accordion-button text-capitalize block <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
+              <div class=" d-flex justify-content-between w-100">
+                <%= semester.semester_name %>
+                <% if result[:cgpa] == 0 %>
+                  <span class="mx-3 badge bg-danger">Failed</span>
+                <% elsif result[:cgpa] == "" %>
+                  <span class="mx-3 badge bg-primary">pending</span>
+                <% else %>
+                  <span class="mx-3 badge bg-success"><%= "%.2f"  % result[:cgpa] %></span>
+                <% end %>
+              </div>
             </button>
           </h2>
           <div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">

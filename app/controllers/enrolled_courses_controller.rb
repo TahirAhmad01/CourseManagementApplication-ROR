@@ -63,15 +63,12 @@ class EnrolledCoursesController < ApplicationController
       end
     end
 
-    if params[:semester_id] === find_user.semester_id and next_semester.present?
-      find_user.update(semester_id: next_semester.id)
-    elsif !params[:params].present? and next_semester.present?
+    if params[:semester_idy] === find_user.semester_id and next_semester.present?
       find_user.update(semester_id: next_semester.id)
     else
       flash[:notice] = "You have reached the last semester."
     end
 
-    # Redirect back to the page with a success message
     redirect_to mark_students_path(id: params[:id]), notice: "Marks updated successfully."
   end
 
