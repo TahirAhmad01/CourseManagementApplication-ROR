@@ -3,7 +3,7 @@ Current semester: <%= @student.semester.semester_name %><br>
 <div class="card mb-3">
   <div class="card-header d-flex justify-content-between align-items-center py-3 px-4">
     <h3>Your Result</h3>
-    <%= link_to "Provide mark" ,mark_students_path , class: "btn btn-sm btn-primary"%>
+    <%= link_to "Provide mark", mark_students_path, class: "btn btn-sm btn-primary" %>
   </div>
   <div class="card-body">
     <div class="accordion mb-4" id="accordionExample">
@@ -12,7 +12,14 @@ Current semester: <%= @student.semester.semester_name %><br>
   </div>
 
   <div class="card-footer text-muted text-center fw-bold">
-    Your total CGPA: Your total CGPA: <%= calculate_total_cgpa_for_student(@student, @semesters) %>
+    Your total CGPA:
+    <% if total_result == 0 %>
+      You have to pass every semester
+    <% elsif total_result.present? && total_result.to_i > 0 %>
+      <%= '%.2f' % total_result %>
+    <% else %>
+      Result pending
+    <% end %>
   </div>
 </div>
 

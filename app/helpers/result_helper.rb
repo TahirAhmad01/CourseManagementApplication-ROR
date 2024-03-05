@@ -1,5 +1,5 @@
 module ResultHelper
-  def total_result
+  def total_result_r
     enrolled_courses = EnrolledCourse.where(users_id: current_user.id)
     unique_semesters = enrolled_courses.select(:semester_id).distinct
     semesters = Semester.all
@@ -18,10 +18,10 @@ module ResultHelper
 
       total_cgpa = calculate_cgpa( enrolled_courses)
       Rails.logger.debug("Total CGPA: #{total_cgpa}")
-      total_cgpa
+      return total_cgpa
     else
       Rails.logger.debug("Not all semester IDs exist in unique semesters.")
-      "result is pending"
+      return "result is pending"
     end
   end
 end

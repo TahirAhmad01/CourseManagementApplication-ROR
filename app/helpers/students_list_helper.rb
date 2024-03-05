@@ -1,22 +1,27 @@
 module StudentsListHelper
-  def calculate_total_cgpa_for_student(student, semesters)
-    total_cgpa = 0.0
-    count = 0
+  def total_result_
+    enrolled_courses = EnrolledCourse.where(users_id: params[:id])
+    unique_semesters = enrolled_courses.select(:semester_id).distinct
+    semesters = Semester.all
+    total_gpa = 0.0
+    total_credit_hours = 0
 
-    semesters.each do |semester|
-      enrolled_courses_for_semester = student.enrolled_courses.where(semester_id: semester.id)
-      if enrolled_courses_for_semester.any?
-        total_cgpa += calculate_cgpa(enrolled_courses_for_semester)
-        count += 1
+    all_semesters_exist = semesters.pluck(:id).all? { |semester_id| unique_semesters.pluck(:semester_id).include?(semester_id) }
+
+    if all_semesters_exist
+      enrolled_courses.each do |enrolled_course|
+        if enrolled_course.marks.present?
+          total_gpa += calculate_grade(enrolled_course.marks) * enrolled_course.course.credit
+          total_credit_hours += enrolled_course.course.credit
+        end
       end
-    end
 
-    if count == 0
-      "Result pending"
-    elsif total_cgpa == 0
-      "You have to pass every semester"
+      total_cgpa = calculate_cgpa( enrolled_courses)
+      Rails.logger.debug("Total CGPA: #{total_cgpa}")
+      total_cgpa
     else
-      '%.2f' % (total_cgpa / count)
+      Rails.logger.debug("Not all semester IDs exist in unique semesters.")
+      "result is pending"
     end
   end
 end
