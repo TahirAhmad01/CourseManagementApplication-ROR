@@ -5,5 +5,14 @@ Current semester: <%= @student.semester.semester_name %><br>
     <h3>Your Result</h3>
     <%= link_to "Provide mark" ,mark_students_path , class: "btn btn-sm btn-primary"%>
   </div>
-  <%= render "students_list/mark/mark_accordion" %>
+  <div class="card-body">
+    <div class="accordion mb-4" id="accordionExample">
+      <%= render "students_list/mark/mark_accordion" %>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted text-center fw-bold">
+    Your total CGPA: Your total CGPA: <%= calculate_total_cgpa_for_student(@student, @semesters) %>
+  </div>
 </div>
+

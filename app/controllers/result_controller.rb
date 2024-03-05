@@ -1,5 +1,6 @@
 class ResultController < ApplicationController
   include ApplicationHelper
+
   def index
     @student = current_user
     @semesters = Semester.all
@@ -16,5 +17,7 @@ class ResultController < ApplicationController
       @semester_results[semester] = semester_result
     end
   end
+
+
 end
 
