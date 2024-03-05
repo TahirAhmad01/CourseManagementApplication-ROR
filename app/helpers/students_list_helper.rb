@@ -1,5 +1,5 @@
 module StudentsListHelper
-  def total_result_
+  def total_result
     enrolled_courses = EnrolledCourse.where(users_id: params[:id])
     unique_semesters = enrolled_courses.select(:semester_id).distinct
     semesters = Semester.all
