@@ -3,7 +3,7 @@ Current semester: <%= @student.semester.semester_name %><br>
 <div class="card mb-3">
   <div class="card-header d-flex justify-content-between align-items-center py-3 px-4">
     <h3>Your Result</h3>
-    <%= link_to "Provide mark" ,mark_student_path(@student, semester_id: @student.semester.id) , class: "btn btn-sm btn-primary"%>
+    <%= link_to "Provide mark" ,mark_students_path , class: "btn btn-sm btn-primary"%>
   </div>
-  <%= render "students_list/mark/mark_accordion" %>"
+  <%= render "students_list/mark/mark_accordion" %>
 </div>

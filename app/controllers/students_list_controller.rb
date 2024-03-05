@@ -12,11 +12,7 @@ class StudentsListController < ApplicationController
 
   def mark
     Rails.logger.debug(params)
-    if params[:semester_id].blank?
-      redirect_to students_list_path
-    else
-      @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id], semester_id: params[:semester_id])
-    end
+    @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id], semester_id: params[:semester_id].presence || @student.semester.id)
     @semesters = Semester.all
   end
 

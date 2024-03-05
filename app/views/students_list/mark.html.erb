@@ -4,6 +4,7 @@
   </div>
   <div class="card-body">
     <%= form_tag(mark_students_path(@student), method: :post, class: "needs-validation", novalidate: true) do %>
+      <%= hidden_field_tag :semester_id, (params[:semester_id] || @student.semester_id) %>
       <% if @student_enrolled_courses.length === 0 %>
         <p class="card-text">Student is not enrolled in any courses for this semester.</p>
       <% elsif @student_enrolled_courses.length > 0 and @student_enrolled_courses.length < 3 %>
@@ -11,9 +12,8 @@
       <% else %>
         <% @student_enrolled_courses.each do |course| %>
           <div class="mb-3">
-            <%= label_tag "course_#{course.id}", "#{course.course.course_name} #{course.course.semester
-              .semester_name}", class: 'form-label fw-semibold'%>
-            <%= text_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true, class: "form-control" %>
+            <%= label_tag "course_#{course.id}", "#{course.course.course_name} #{course.course.semester.semester_name}", class: 'form-label fw-semibold'%>
+            <%= number_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true, class: "form-control" %>
           </div>
         <% end %>
         <%= submit_tag "Submit Marks", class: "btn btn-primary" %>
