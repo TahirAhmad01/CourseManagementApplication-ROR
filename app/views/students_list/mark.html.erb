@@ -1,6 +1,20 @@
 <div class="card">
   <div class="card-header fw-semibold">
-    Provide course marks
+    <div class="d-flex align-items-center gap-3">
+      <div class="profile-pic profile-pic_card">
+        <% if @student.profile_picture.attached? %>
+          <%= image_tag @student.profile_picture %>
+        <% else %>
+          <!--            <img src="no-image.png" class="card-img-top" alt="...">-->
+          <%= image_tag "no-image.png", class: "card-img-top" %>
+        <% end %>
+      </div>
+      <div>
+        <div class="text-capitalize"><%= "#{@student.first_name} #{@student.last_name}" %></div>
+        <small class="text-secondary">You gave marks for semester: <%= params[:semester_id] || @student.semester.semester_name %></small>
+      </div>
+
+    </div>
   </div>
   <div class="card-body">
     <%= form_tag(mark_students_path(@student), method: :post, class: "needs-validation", novalidate: true) do %>

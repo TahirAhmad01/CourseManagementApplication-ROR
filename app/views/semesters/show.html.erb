@@ -33,7 +33,7 @@
           </div>
           <div>
             <div class="text-capitalize"><%= student.first_name + " " + student.last_name %></div>
-            <a href="#">View result</a>
+            <%= link_to "View result" ,students_list_path(student.id)%>
           </div>
         </div>
       <% end %>
