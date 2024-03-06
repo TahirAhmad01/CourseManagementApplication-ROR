@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     root 'userpanel#index', as: "users_dashboard"
     resources :enrolled_courses, only: [:create, :index, :show, :destroy,]
     get 'result', to: 'result#index'
+    post 'search_courses', to: 'userpanel#search_courses'
+
   end
 
   authenticated :admin do
