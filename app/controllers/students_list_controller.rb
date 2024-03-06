@@ -11,12 +11,14 @@ class StudentsListController < ApplicationController
   end
 
   def mark
-    Rails.logger.debug(params)
-    @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id], semester_id: params[:semester_id].presence || @student.semester.id)
     @semesters = Semester.all
-  end
 
-  def create_marks
+    if params[:semester_id].present? && !Semester.exists?(id: params[:semester_id])
+      redirect_to students_list_path(@student), alert: "Invalid semester ID"
+    else
+      semester_find = params[:semester_id].presence || @student.semester.id
+      @student_enrolled_courses = EnrolledCourse.where(users_id: params[:id], semester_id: semester_find)
+    end
   end
 
 

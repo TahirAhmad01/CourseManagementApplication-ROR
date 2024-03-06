@@ -1,0 +1,58 @@
+<div id="collapse<%= semester.id %>" class="accordion-collapse collapse <%= 'show' if @student.semester == semester %>" aria-labelledby="heading<%= semester.id %>" data-bs-parent="#accordionExample">
+  <div class="accordion-body">
+    <% if result[:enrolled_courses].any? %>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Course List</th>
+          <th scope="col">Credit</th>
+          <th scope="col">Mark</th>
+          <th scope="col">Grade</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% total_mark = 0 %>
+        <% result[:enrolled_courses].each_with_index do |enrolled_course, index| %>
+          <% grade = calculate_grade(enrolled_course.marks) %>
+          <% total_mark += enrolled_course.marks.to_i if enrolled_course.marks.present? %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= enrolled_course.course.course_name %></td>
+            <td><%= enrolled_course.course.credit %></td>
+            <td>
+              <% if enrolled_course.marks.nil? %>
+                <span class="text-muted">Mark pending</span>
+              <% else %>
+                <%= enrolled_course.marks %>
+              <% end %>
+            </td>
+            <td>
+              <% if enrolled_course.marks.nil? %>
+                <span class="text-muted">Mark pending</span>
+              <% elsif grade == 0 %>
+                <span class="text-danger">Failed</span>
+              <% else %>
+                <%= grade %>
+                (<%= grade_alpha(grade) %>)
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="2" class="text-end">Total Mark</td>
+          <td colspan="2" class="text-center"><%= total_mark %></td>
+          <td class="">CGPA:
+            <% if result[:cgpa] == nil %>
+              Pending result
+            <% else %>
+              <%= "%.2f" % result[:cgpa] %> ( <%= grade_alpha(result[:cgpa]) %> )
+            <% end %></td>
+        </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center text-danger py-3">You are not enrolled in any courses for this semester.</p>
+    <% end %>
+  </div>
+</div>

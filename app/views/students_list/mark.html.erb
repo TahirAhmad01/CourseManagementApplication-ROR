@@ -10,8 +10,9 @@
         <% end %>
       </div>
       <div>
+        <% semester = Semester.find_by(id: params[:semester_id]) %>
         <div class="text-capitalize"><%= "#{@student.first_name} #{@student.last_name}" %></div>
-        <small class="text-secondary">You gave marks for semester: <%= params[:semester_id] || @student.semester.semester_name %></small>
+        <small class="text-secondary">You gave marks for semester: <%= semester.present? ? semester.semester_name : @student.semester.semester_name %></small>
       </div>
 
     </div>

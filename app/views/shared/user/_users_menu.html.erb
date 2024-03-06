@@ -5,5 +5,13 @@
   <%= link_to "Enrolled courses", enrolled_courses_path, class: "nav-link" %>
 </li>
 <li class="nav-item">
-  <%= link_to "Result", result_path, class: "nav-link" %>
+  <%= link_to result_path, class: "nav-link" do %>
+    Result (<% if !current_user.cgpa.nil? %>
+      <% if current_user.cgpa == 0 %>
+     Failed
+      <% else %>
+      <%= current_user.cgpa %>
+      <% end %>
+    <% end %>)
+  <% end %>
 </li>

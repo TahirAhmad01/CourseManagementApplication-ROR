@@ -1,0 +1,18 @@
+<h2 class="accordion-header" id="heading<%= semester.id %>">
+  <button class="accordion-button text-capitalize block <%= 'collapsed' unless @student.semester == semester %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= semester.id %>" aria-expanded="<%= 'true' if @student.semester == semester %>" aria-controls="collapse<%= semester.id %>">
+    <div class="d-flex justify-content-between w-100 px-2">
+      <%= semester.semester_name %>
+      <% student_enrolled_courses_for_semester = @student_enrolled_courses.where(semester_id: semester.id) %>
+      <% if student_enrolled_courses_for_semester.any? %>
+        <% cgpa = calculate_cgpa(student_enrolled_courses_for_semester) %>
+        <% if cgpa == 0 %>
+          <span class="badge bg-danger">Failed</span>
+        <% elsif cgpa.to_f > 1 %>
+          <span class="badge bg-success"><%= "%.2f" % cgpa %></span>
+        <% elsif cgpa == nil %>
+          <span class="badge bg-primary">Pending</span>
+        <% end %>
+      <% end %>
+    </div>
+  </button>
+</h2>

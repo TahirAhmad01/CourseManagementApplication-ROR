@@ -2,7 +2,6 @@ class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
   before_action :semesters
 
-  # GET /courses or /courses.json
   def index
     @courses = if params[:semester_id].present?
                  Semester.find(params[:semester_id]).courses
@@ -16,7 +15,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1 or /courses/1.json
   def show
   end
 
