@@ -2,12 +2,13 @@ module ApplicationHelper
   def calculate_cgpa(enrolled_courses)
     total_credit_points = 0
     total_credits = 0
-    flag = true
+    flag = false
     failed_courses = []
 
     enrolled_courses.each do |enrolled_course|
-      next if enrolled_course.marks.nil?
-      flag = false
+      if enrolled_course.marks.nil?
+        flag = true
+      end
       credit = enrolled_course.course.credit
       grade_points = calculate_grade(enrolled_course.marks)
 
@@ -24,11 +25,13 @@ module ApplicationHelper
       puts "You have failed in #{course_name}"
     end
 
-
     if flag
       total_credits = nil
     else
+      Rails.logger.debug("====++++++++++===+++++++++++++================================================")
+      Rails.logger.debug(total_credits.zero? ? 0 : total_credit_points / total_credits)
       total_credits.zero? ? 0 : total_credit_points / total_credits
+
     end
   end
 

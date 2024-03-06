@@ -23,6 +23,7 @@ module ResultHelper
 
       if enrolled_courses_exits
         total_cgpa = calculate_cgpa( enrolled_courses)
+        current_user.update(cgpa: total_cgpa)
         return total_cgpa
       else
         return "result is pending"

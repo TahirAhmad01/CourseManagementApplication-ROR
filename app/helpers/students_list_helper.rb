@@ -23,7 +23,9 @@ module StudentsListHelper
       end
 
       if enrolled_courses_exits
-        total_cgpa = calculate_cgpa( enrolled_courses)
+        total_cgpa = calculate_cgpa(enrolled_courses)
+        user = User.where(id: params[:id])
+        user.update(cgpa: total_cgpa)
         return total_cgpa
       else
         return "result is pending"

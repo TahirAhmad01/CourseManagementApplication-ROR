@@ -42,12 +42,12 @@
                 <td><%= enrolled_course.course.course_name %></td>
                 <td><%= enrolled_course.course.credit %></td>
                 <td>
-                  <% if enrolled_course.marks.nil? %> Mark pending
+                  <% if enrolled_course.marks.nil? %> <span class="text-secondary">Mark pending</span>
                   <% else %> <%= enrolled_course.marks %>
                   <% end %>
                 </td>
                 <td>
-                  <% if enrolled_course.marks.nil? %> Mark pending
+                  <% if enrolled_course.marks.nil? %> <span class="text-secondary">Mark pending</span>
                   <% elsif grade == 0 %> <span class="badge bg-danger">Failed</span>
                   <% else %> <%= grade %> (<%= grade_alpha(grade) %>)
                   <% end %>
@@ -55,9 +55,16 @@
               </tr>
             <% end %>
             <tr>
+              <% grade = calculate_cgpa(student_enrolled_courses_for_semester) %>
               <td colspan="2" class="text-end">Total Mark</td>
               <td colspan="2" class="text-center"><%= total_mark %></td>
-              <td>CGPA: <%= calculate_cgpa(student_enrolled_courses_for_semester) %></td>
+              <td>
+                <% if grade != nil %><%= grade %> CGPA:<%= grade_alpha(grade) %>
+                <% else %>
+                  <div class="text-secondary">Mark Pending</div>
+                <% end %></td>
+
+
             </tr>
             </tbody>
           </table>
