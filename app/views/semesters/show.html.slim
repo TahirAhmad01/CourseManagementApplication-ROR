@@ -16,13 +16,12 @@ h4.mb-3
       - @users.each_with_index do |student, index|
         .d-flex.align-items-center.gap-3.mb-3
 
-        .profile-pic.profile-pic_card
-          - if student.profile_picture.attached?
-            = image_tag student.profile_picture
-          - else
-            = image_tag "no-image.png", class: "card-img-top"
-        div
-
-        .text-capitalize
-          = student.first_name + " " + student.last_name
-        = link_to "View result" ,students_list_path(student.id)
+          .profile-pic.profile-pic_card
+            - if student.profile_picture.attached?
+              = image_tag student.profile_picture
+            - else
+              = image_tag "no-image.png", class: "card-img-top"
+          div
+            .text-capitalize
+              = student.first_name + " " + student.last_name
+            = link_to "View result" ,students_list_path(student.id)

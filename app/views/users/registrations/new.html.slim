@@ -1,20 +1,22 @@
 .form_login
-  h2
-    | Sign up user
+  h2 Sign up user
+
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = render "users/shared/error_messages", resource: resource
-    .row
 
-    .field.col-6
-      = f.label :first_name
-      = f.text_field :first_name, autofocus: true
-    .field.col-6
-      = f.label :last_name
-      = f.text_field :last_name
+    .row
+      .field.col-6
+        = f.label :first_name
+        = f.text_field :first_name, autofocus: true
+      .field.col-6
+        = f.label :last_name
+        = f.text_field :last_name
+
     .field
       = f.label :email
       br
       = f.email_field :email, autocomplete: "email"
+
     .row
       .field.col-6
         = f.label :semester_id
@@ -23,25 +25,26 @@
           = f.text_field :semester_name, value: Semester.first&.semester_name, class: "form-control", readonly: true
           = f.hidden_field :semester_id, value: Semester.first&.id
         - else
-          = f.text_field :semester_name, value: "No semesters available", class: "form-control  border-danger text-danger", placeholder:
-          - "", readonly : true
+          = f.text_field :semester_name, value: "No semesters available", class: "form-control border-danger text-danger", placeholder: "", readonly: true
           = f.hidden_field :semester_id, value: ""
+
       .field.col-6
         = f.label :birthdate
         = f.date_field :birthdate
+
     .field
       = f.label :password
       - if @minimum_password_length
         em
-          | (
-          = @minimum_password_length
-          |  characters minimum)
+        | (#{@minimum_password_length} characters minimum)
       br
       = f.password_field :password, autocomplete: "new-password"
+
     .field
       = f.label :password_confirmation
       br
       = f.password_field :password_confirmation, autocomplete: "new-password"
+
     .actions
       = f.submit "Sign up", class: "btn btn-primary navbar__right button"
-= render "users/shared/links"
+  = render "users/shared/links"

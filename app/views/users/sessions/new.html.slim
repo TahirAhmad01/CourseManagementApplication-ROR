@@ -4,8 +4,8 @@
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+      br
+      = f.email_field :email, autofocus: true, autocomplete: "email"
     .field
       = f.label :password
       br
@@ -17,4 +17,4 @@
           = f.label :remember_me, class: "w-"
     .button
       = f.submit "Log in", class: "btn btn-primary navbar__right button"
-= render "users/shared/links"
+  = render "users/shared/links"

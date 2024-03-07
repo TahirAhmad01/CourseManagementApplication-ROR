@@ -2,14 +2,14 @@
   - if semester.errors.any?
     .card.border-danger.mb-3
 
-    .card-header.text-white.bg-danger
-      = pluralize(semester.errors.count, "error")
-      |  prohibited this semester from being saved: 
-    .card-body.text-danger
-      ul
-        - semester.errors.each do |error|
-          li
-            = error.full_message
+    / .card-header.text-white.bg-danger
+    /   = pluralize(semester.errors.count, "error")
+    /   |  prohibited this semester from being saved:
+    / .card-body.text-danger
+    /   ul
+    /     - semester.errors.each do |error|
+    /       li
+    /         = error.full_message
   .mb-3
     = form.label :semester_name, class: 'form-label'
     = form.text_field :semester_name, class: 'form-control'
