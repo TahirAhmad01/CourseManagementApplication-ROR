@@ -1,0 +1,7 @@
+.mb-3
+  = link_to "Back to semesters", semesters_path
+.card
+  .card-header.pt-3
+    h3
+      | Edit semester
+  = render "form", semester: @semester

@@ -1,0 +1,11 @@
+#semesters
+  .card
+    .card-header.d-flex.justify-content-between.align-items-center.py-3.px-4.h3.m-0
+        |  Semesters List
+        = link_to "New semester", new_semester_path, class: "btn btn-primary btn-sm fw-bold"
+    #courses_list.card-body
+      - if @semesters.length < 1
+        .text-center.text-danger.py-3
+          | No semester has been found yet.
+      - @semesters.each do |semester|
+        = render semester

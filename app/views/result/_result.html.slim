@@ -1,0 +1,4 @@
+- @semester_results.each do |semester, result|
+  .accordion-item
+    = render partial: "result/result_head", locals: { semester: semester, result: result }
+    = render partial: "result/result_body", locals: { semester: semester, result: result }

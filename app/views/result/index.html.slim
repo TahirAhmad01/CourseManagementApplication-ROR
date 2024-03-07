@@ -1,0 +1,15 @@
+.card.mb-3
+  .card-header
+    h3
+      | Your Result
+  .card-body
+    #accordionExample.accordion.mb-4
+      = render "result/result"
+  .card-footer.text-muted.text-center.fw-bold
+    |  Your total CGPA: 
+    - if total_result_r == 0
+      |  You have to pass every semester 
+    - elsif total_result_r.present? && total_result_r.to_i > 0
+      = '%.2f' % total_result_r
+    - else
+      |  Result pending 

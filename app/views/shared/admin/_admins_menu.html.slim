@@ -1,0 +1,9 @@
+li.nav-item
+  a.nav-link.active[aria-current="page" href="#"]
+    | Home
+li.nav-item
+  = link_to "Semesters", semesters_path, class: "nav-link"
+li.nav-item
+  = link_to "Courses", courses_path, class: "nav-link"
+li.nav-item
+  = link_to "Student list", students_list_index_url, class: "nav-link"

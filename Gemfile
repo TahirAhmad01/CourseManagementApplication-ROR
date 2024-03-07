@@ -77,3 +77,5 @@ gem "simple_form", "~> 5.1.0"
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+gem "slim", "~> 5.2"

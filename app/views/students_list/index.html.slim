@@ -1,0 +1,22 @@
+h2
+  | Students List
+- @students.each do |student|
+  = link_to students_list_path(student) do
+    .d-flex.align-items-center.gap-3.mb-3.bg-light.shadow-sm.rounded-2.px-3.py-3
+      .profile-pic.profile-pic_card
+        - if student.profile_picture.attached?
+          = image_tag student.profile_picture
+        - else
+          = image_tag "no-image.png", class: "card-img-top"
+      .text-capitalize
+        .text-dark.d-flex.align-items-center.gap-1
+          = student.first_name + " " + student.last_name
+          - if !student.cgpa.nil?
+            - if student.cgpa == 0
+              .badge.bg-danger
+                | Failed
+            - else
+              .badge.bg-success
+                = student.cgpa
+        small.text-capitalize.text-secondary
+          = student.semester.semester_name

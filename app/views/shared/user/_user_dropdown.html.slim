@@ -1,0 +1,17 @@
+ul.navbar-nav.ms-auto.mb-2.mb-lg-0.profile-menu
+  li.nav-item.dropdown
+    a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
+      .profile-pic
+        - if current_user.profile_picture.attached?
+          = image_tag current_user.profile_picture
+        - else
+          = image_tag "no-image.png", class: "card-img-top"
+    ul.dropdown-menu[aria-labelledby="navbarDropdown"]
+      li
+        = link_to edit_user_registration_path, class: "dropdown-item" do
+          i.fas.fa-cog.fa-fw
+          |  Settings 
+      li.text-primary
+        = link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "dropdown-item" do
+          i.fas.fa-sign-out-alt.fa-fw
+          |  user sign out 

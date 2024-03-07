@@ -1,0 +1,30 @@
+.card
+  .card-header.fw-semibold
+    .d-flex.align-items-center.gap-3
+      .profile-pic.profile-pic_card
+        - if @student.profile_picture.attached?
+          = image_tag @student.profile_picture
+        - else
+          = image_tag "no-image.png", class: "card-img-top"
+      div
+        - semester = Semester.find_by(id: params[:semester_id])
+        .text-capitalize
+          = "#{@student.first_name} #{@student.last_name}"
+        small.text-secondary
+          | You gave marks for semester: 
+          = semester.present? ? semester.semester_name : @student.semester.semester_name
+  .card-body
+    = form_tag(mark_students_path(@student), method: :post, class: "needs-validation", novalidate: true) do
+      = hidden_field_tag :semester_id, (params[:semester_id] || @student.semester_id)
+      - if @student_enrolled_courses.length === 0
+        p.card-text
+          | Student is not enrolled in any courses for this semester.
+      - elsif @student_enrolled_courses.length > 0 and @student_enrolled_courses.length < 3
+        p.card-text
+          | Student is not enrolled in at least three courses for this semester.
+      - else
+        - @student_enrolled_courses.each do |course|
+          .mb-3
+            = label_tag "course_#{course.id}", "#{course.course.course_name} #{course.course.semester.semester_name}", class: 'form-label fw-semibold'
+            = number_field_tag "marks[#{course.id}]", (course.marks.nil? ? "" : course.marks), required: true, class: "form-control"
+        = submit_tag "Submit Marks", class: "btn btn-primary"

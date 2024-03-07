@@ -1,0 +1,21 @@
+article.postcard.light.blue
+  a.postcard__img_link(href="#")
+    - if enrolled_course.course.course_image.attached?
+      = image_tag enrolled_course.course.course_image, class: "postcard__img"
+    - else
+      = image_tag "no-image.png", class: "postcard__img"
+  .postcard__text.t-dark
+    h1.postcard__title.green.text-capitalize = enrolled_course.course.course_name
+    div.postcard__subtitle.small.text-capitalize.fw-semibold.text-secondary
+      time(datetime="2020-05-25 12:00:00")
+        i.fa-solid.fa-graduation-cap
+        = enrolled_course.semester.semester_name
+        i.fas.fa-calendar-alt.mx-2
+        = enrolled_course.course.created_at.strftime("%Y-%m-%d %H:%M")
+    div.postcard__bar
+    div.postcard__preview-txt.text-secondary
+      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat
+      | asperiores inventore beatae accusamus odit minima enim.
+    div.postcard__tagbox
+      = button_to "Cancel this enrolled course", enrolled_course, method: :delete, class: "btn btn-danger btn-sm",
+              data: { confirm: 'Are you sure you want to cancel this enrolled course?' }

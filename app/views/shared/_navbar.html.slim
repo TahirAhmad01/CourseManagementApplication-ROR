@@ -1,0 +1,27 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow
+  .container
+    a.navbar-brand[href="/"] Navbar
+    button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        - if user_signed_in?
+          = render "shared/user/users_menu"
+        - elsif admin_signed_in?
+          = render "shared/admin/admins_menu"
+    .d-flex.align-items-center.gap-2
+    - if user_signed_in?
+      .d-flex.flex-column.justify-content-end.text-end
+        h6.text-white.m-0 = "#{current_user.first_name} #{current_user.last_name} (user)"
+        small.text-light.text-xs = current_user.semester.semester_name
+    - elsif admin_signed_in?
+      h6.text-white.m-0 = "#{current_admin.first_name} #{current_admin.last_name} (admin)"
+    - if user_signed_in?
+      = render "shared/user/user_dropdown"
+    - elsif admin_signed_in?
+      = render "shared/admin/admin_dropdown"
+    - unless user_signed_in? || admin_signed_in?
+      = link_to user_session_path do
+        button.btn.mx-3.btn-light[type="button"] User Sign In
+      = link_to admin_session_path do
+        button.btn.btn-light[type="button"] Admin Sign In

@@ -1,0 +1,14 @@
+.mb-3
+  = link_to "Back to courses", courses_path
+- if @semesters.length === 0
+  .text-center.text-danger.py-3
+    | No semester found yet
+- elsif @semesters.length > 0
+  .card
+
+  .card-header
+
+  h3
+    | New course
+  = render "form", course: @course
+br

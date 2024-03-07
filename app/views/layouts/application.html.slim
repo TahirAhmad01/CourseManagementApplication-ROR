@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      | Course Management Project 
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = favicon_link_tag asset_path('logo.webp')
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+    link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"]
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+
+  body
+    = render "shared/navbar"
+    #flash.flash
+      = render "layouts/flash"
+    .container.pt-4
+      = yield
+    script[src="https://kit.fontawesome.com/f70f4c2534.js" crossorigin="anonymous"]

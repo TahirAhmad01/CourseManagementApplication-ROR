@@ -1,0 +1,22 @@
+.container
+  h1
+    | Home#index
+  p
+    | Find me in app/views/home/index.html.erb
+  - if user_signed_in?
+    = current_user.name
+    br
+    = link_to "user sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }
+    = link_to "user Edit Profile", edit_user_registration_path
+  - else
+    = link_to "sign in", new_user_session_path
+    = link_to "sign up", new_user_registration_path
+  div
+  - if admin_signed_in?
+    = current_admin.email
+    br
+    = link_to "admin sign out", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete }
+    = link_to "admin Edit Profile", edit_admin_registration_path
+  - else
+    = link_to "admin sign in", new_admin_session_path
+    = link_to "admin sign up", new_admin_registration_path

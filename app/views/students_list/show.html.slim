@@ -1,0 +1,26 @@
+.card.mb-3.mt-3
+  .card-header.d-flex.justify-content-between.align-items-center.py-3.px-4
+    .d-flex.align-items-center.gap-3
+      .profile-pic.profile-pic_card
+        - if @student.profile_picture.attached?
+          = image_tag @student.profile_picture
+        - else
+          = image_tag "no-image.png", class: "card-img-top"
+      div
+        .text-capitalize
+          = @student.first_name + " " + @student.last_name
+        small.text-secondary
+          = @student.semester.semester_name
+          br
+    = link_to "Provide mark", mark_students_path, class: "btn btn-sm btn-primary"
+  .card-body
+    #accordionExample.accordion.mb-4
+      = render "students_list/mark/mark_accordion"
+  .card-footer.text-muted.text-center.fw-bold
+    |  Your total CGPA: 
+    - if total_result == 0
+      |  You have to pass every semester 
+    - elsif total_result.present? && total_result.to_i > 0
+      = '%.2f' % total_result
+    - else
+      |  Result pending 

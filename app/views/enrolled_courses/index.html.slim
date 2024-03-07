@@ -1,0 +1,16 @@
+section.light
+  .container.py-2
+
+    .fs-3.mb-4.text-dark.text-center
+      | Your Enrolled Courses
+    #enrolled_courses
+      - if current_user.cgpa
+        .text-center.text-success.card.py-4.shadow-sm
+          | You are now Graduated
+      - else
+        - if @enrolled_courses.length > 0
+          - @enrolled_courses.each do |enrolled_course|
+            = render enrolled_course
+        - else
+          .text-center.text-danger.card.py-4.shadow-sm
+            | You are not enrolled in any courses for this semester.

@@ -1,0 +1,28 @@
+= link_to "Back to semesters", semesters_path
+h4.mb-3
+.card
+  .card-header.fw-semibold.fs-5.py-3.px-4.text-capitalize
+    |  Courses List 
+  .card-body
+    = render partial: "courses/course", collection: @courses, as: :course
+.card.my-4
+  .card-header.fw-semibold.fs-5.py-3.px-4.text-capitalize
+    |  Students List 
+  .card-body
+    - if @users.length === 0
+      .text-danger.fw-bold.text-center
+        | No students are available this semester.
+    - else
+      - @users.each_with_index do |student, index|
+        .d-flex.align-items-center.gap-3.mb-3
+
+        .profile-pic.profile-pic_card
+          - if student.profile_picture.attached?
+            = image_tag student.profile_picture
+          - else
+            = image_tag "no-image.png", class: "card-img-top"
+        div
+
+        .text-capitalize
+          = student.first_name + " " + student.last_name
+        = link_to "View result" ,students_list_path(student.id)

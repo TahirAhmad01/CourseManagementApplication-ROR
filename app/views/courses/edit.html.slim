@@ -1,0 +1,8 @@
+.mb-3
+  = link_to "Back to courses", courses_path
+.card
+  .card-header
+    h3
+      | Editing course
+  = render "form", course: @course
+br

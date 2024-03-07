@@ -1,6 +1,0 @@
-<% @semester_results.each do |semester, result| %>
-  <div class="accordion-item">
-    <%= render partial: "result/result_head", locals: { semester: semester, result: result } %>
-    <%= render partial: "result/result_body", locals: { semester: semester, result: result } %>
-  </div>
-<% end %>

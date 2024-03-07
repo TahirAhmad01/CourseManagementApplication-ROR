@@ -1,0 +1,8 @@
+h1
+  | Editing enrolled course
+= render "form", enrolled_course: @enrolled_course
+br
+div
+  = link_to "Show this enrolled course", @enrolled_course
+  |  | 
+  = link_to "Back to enrolled courses", enrolled_courses_path

@@ -1,0 +1,12 @@
+/ | <div id=" dom_id semester " class="">
+
+.card.shadow-sm.my-3.border-opacity-10
+  .d-flex.justify-content-between.align-items-center.px-3.py-2
+    div
+      strong
+        = link_to semester.semester_name, semester_path(semester)
+    .d-flex.gap-1
+      div
+        = link_to "Edit", edit_semester_path(semester), class: "c_btn c_btn--light capitalized"
+      div
+        = button_to "Delete", semester_path(semester), method: :delete, class: "c_btn c_btn--light capitalize"
