@@ -1,0 +1,46 @@
+.accordion-collapse.collapse class=("show" if @student.semester == semester) id="collapse#{semester.id}" aria-labelledby="heading#{semester.id}" data-bs-parent="#accordionExample"
+  .accordion-body
+    - student_enrolled_courses_for_semester = @student_enrolled_courses.where(semester_id: semester.id)
+    - if student_enrolled_courses_for_semester.any?
+      table.table.table-bordered
+        thead
+          tr
+            th(scope="col") #
+            th(scope="col") Course List
+            th(scope="col") Credit
+            th(scope="col") Mark
+            th(scope="col") Grade
+        tbody
+          - total_mark = 0
+          - student_enrolled_courses_for_semester.each_with_index do |enrolled_course, index|
+            - grade = calculate_grade(enrolled_course.marks)
+            - total_mark += enrolled_course.marks.to_i if enrolled_course.marks.present?
+            tr
+              th(scope="row") #{index + 1}
+              td= enrolled_course.course.course_name
+              td= enrolled_course.course.credit
+              td
+                - if enrolled_course.marks.nil?
+                  span.text-secondary Mark pending
+                - else
+                  = enrolled_course.marks
+              td
+                - if enrolled_course.marks.nil?
+                  span.text-secondary Mark pending
+                - elsif grade == 0
+                  span.badge.bg-danger Failed
+                - else
+                  = "#{grade} (#{grade_alpha(grade)})"
+          tr
+            - grade = calculate_cgpa(student_enrolled_courses_for_semester)
+            td(colspan="2").text-end Total Mark
+            td(colspan="2").text-center= total_mark
+            td
+              - if grade != nil
+                div.fw-semibold CGPA: #{'%.2f' % grade} #{grade_alpha(grade)}
+              - else
+                div.text-secondary Mark Pending
+      .text-end
+        = link_to "Edit Mark", mark_student_path(@student, semester_id: semester.id), class: "btn btn-primary btn-sm px-4"
+    - else
+      p.text-center.text-danger.py-3 You are not enrolled in any courses for this semester.
