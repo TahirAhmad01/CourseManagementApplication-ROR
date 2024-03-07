@@ -6,12 +6,12 @@
 </li>
 <li class="nav-item">
   <%= link_to result_path, class: "nav-link" do %>
-    Result (<% if !current_user.cgpa.nil? %>
-      <% if current_user.cgpa == 0 %>
+    Result <% if !current_user.cgpa.nil? %>
+      (<% if current_user.cgpa == 0 %>
      Failed
       <% else %>
       <%= current_user.cgpa %>
-      <% end %>
-    <% end %>)
+      <% end %>)
+    <% end %>
   <% end %>
 </li>
