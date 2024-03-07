@@ -18,10 +18,7 @@
             = course.created_at.strftime("%Y-%m-%d %H:%M")
         div.postcard__bar
         div.postcard__preview-txt.text-secondary
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          | Eligendi,
-          | fugiat
-          | asperiores inventore beatae accusamus odit minima enim.
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim.
         div.postcard__tagbox
           - if enrolled_courses.exists?(course_id: course.id)
             button.btn.btn-success.btn-sm(disabled)<i.fa-regular.fa-circle-check>

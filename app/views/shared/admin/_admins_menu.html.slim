@@ -1,6 +1,5 @@
 li.nav-item
-  a.nav-link.active[aria-current="page" href="#"]
-    | Home
+  = link_to "Home", root_path, class: "nav-link"
 li.nav-item
   = link_to "Semesters", semesters_path, class: "nav-link"
 li.nav-item
