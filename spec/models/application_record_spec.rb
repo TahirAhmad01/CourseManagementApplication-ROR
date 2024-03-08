@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './models/application_record'
+require 'application_record'
 
 describe ApplicationRecord do
 

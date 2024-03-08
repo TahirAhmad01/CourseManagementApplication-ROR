@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './models/course'
+require 'course'
 
 describe Course do
 

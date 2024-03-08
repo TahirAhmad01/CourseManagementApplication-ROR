@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './controllers/enrolled_courses_controller'
+require 'enrolled_courses_controller'
 
 describe EnrolledCoursesController do
 

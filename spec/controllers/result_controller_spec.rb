@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './controllers/result_controller'
+require 'result_controller'
 
 describe ResultController do
 

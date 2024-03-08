@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './controllers/userpanel_controller'
+require 'userpanel_controller'
 
 describe UserpanelController do
 

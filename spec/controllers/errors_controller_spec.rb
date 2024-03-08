@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './controllers/errors_controller'
+require 'errors_controller'
 
 describe ErrorsController do
 

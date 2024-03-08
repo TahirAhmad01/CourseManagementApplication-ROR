@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './models/semester'
+require 'semester'
 
 describe Semester do
 

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
-require './controllers/students_list_controller'
+require 'students_list_controller'
 
 describe StudentsListController do
 
