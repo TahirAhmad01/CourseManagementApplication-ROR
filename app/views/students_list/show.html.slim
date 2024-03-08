@@ -22,5 +22,6 @@
       |  You have to pass every semester 
     - elsif total_result.present? && total_result.to_i > 0
       = '%.2f' % total_result
+      |  (#{grade_alpha(total_result)})
     - else
       |  Result pending 

@@ -33,11 +33,14 @@
                   = "#{grade} (#{grade_alpha(grade)})"
           tr
             - grade = calculate_cgpa(student_enrolled_courses_for_semester)
-            td(colspan="2").text-end Total Mark
-            td(colspan="2").text-center= total_mark
+            td(colspan="2")
+              .text-end  Total Mark
+            td(colspan="2")
+              .text-center
+                = total_mark
             td
               - if grade != nil
-                div.fw-semibold CGPA: #{'%.2f' % grade} #{grade_alpha(grade)}
+                div.fw-semibold CGPA: #{'%.2f' % grade} ( #{grade_alpha(grade)} )
               - else
                 div.text-secondary Mark Pending
       .text-end
