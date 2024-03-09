@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
   before_action :redirect_if_admin_signed_in, only: [:new, :edit]
   before_action :set_default_semester, only: [:new]
   before_action :configure_permitted_parameters_for_user
   before_action :semesters
+  # enum gender: { male: 0, female: 1 }
 
   # GET /resource/sign_up
   # def new
@@ -78,8 +77,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters_for_user
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthdate, :semester_id, :profile_picture])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthdate, :profile_picture])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthdate, :semester_id,
+                                                       :profile_picture, :gender])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthdate, :profile_picture,
+                                                              :gender])
   end
 
   def semesters

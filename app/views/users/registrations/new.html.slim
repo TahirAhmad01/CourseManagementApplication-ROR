@@ -33,6 +33,11 @@
         = f.date_field :birthdate
 
     .field
+      = f.label :gender
+      br
+      = f.select :gender, User.genders.keys, prompt: "Select Gender"
+
+    .field
       = f.label :password
       - if @minimum_password_length
         em

@@ -4,7 +4,6 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :redirect_if_admin_signed_in, only: [:new]
 
-
   # GET /resource/sign_in
   # def new
   #   super
