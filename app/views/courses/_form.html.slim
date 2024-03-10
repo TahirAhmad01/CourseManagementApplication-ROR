@@ -1,15 +1,5 @@
 .card-body
   = form_with(model: course, local: true) do |form|
-    / - if course.errors.any?
-    /   .alert.alert-danger[role="alert"]
-    /     h4.alert-heading
-    /       = pluralize(course.errors.count, "error")
-    /       |  prohibited this course from being saved:
-    /     ul
-    /       - course.errors.each do |error|
-    /         li
-    /           = error.full_message
-
     .row.mb-2
       .col-md-4
         = form.label :course_name, class: "form-label"
@@ -46,6 +36,6 @@
       - if course.errors.include?(:course_image)
         .invalid-feedback
           = course.errors.full_messages_for(:course_image).join(", ")
-
     div
       = form.submit class: "btn btn-primary"
+

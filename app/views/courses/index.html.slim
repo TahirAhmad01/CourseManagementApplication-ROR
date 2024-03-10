@@ -14,9 +14,12 @@
         - @semesters.each do |semester|
           li
             = link_to semester.semester_name, courses_path(semester_id: semester.id), class: "dropdown-item", remote: true
-    = link_to "Add new course", new_course_path, class: "btn btn-secondary"
+    = link_to "Add new course", new_course_path, class: "btn btn-secondary" , data: { turbo_frame: "form_item" }
+= turbo_frame_tag "form_item"
 .card
   .card-header
     |  Featured 
   #courses_list.card-body
-    = render @courses
+    div id="course" class="d-flex flex-column gap-3"
+      / = turbo_frame_tag @course
+      = render @courses

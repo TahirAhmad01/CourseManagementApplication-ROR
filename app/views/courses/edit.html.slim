@@ -4,5 +4,6 @@
   .card-header
     h3
       | Editing course
-  = render "form", course: @course
-br
+  = turbo_frame_tag "form_item" do
+    .card
+      = render "form", course: @course

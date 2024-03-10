@@ -5,9 +5,10 @@
     | No semester found yet
 - elsif @semesters.length > 0
   .card
-
     .card-header
       h3
         | New course
-    = render "form", course: @course
-br
+    / = render "form", course: @course
+    = turbo_frame_tag "form_item" do
+      .card
+        = render "form", course: @course
