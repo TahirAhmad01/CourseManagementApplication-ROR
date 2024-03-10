@@ -18,9 +18,12 @@ h2 Edit #{resource_name.to_s.humanize}
       = f.email_field :email, autocomplete: "email"
 
     .row
-      .field.col-12
+      .field.col-6
         = f.label :birthdate
         = f.date_field :birthdate
+      .field.col-6
+        = f.label :gender
+        = f.select :gender, User.genders.keys, prompt: "Select Gender"
 
     .mb-3
       = f.label :profile_picture, class: "form-label"

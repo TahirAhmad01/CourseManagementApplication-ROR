@@ -19,6 +19,10 @@ h4.mb-3
           .profile-pic.profile-pic_card
             - if student.profile_picture.attached?
               = image_tag student.profile_picture
+            -elsif !student.profile_picture.attached? && student.gender == "male"
+              = image_tag "male_ico.jpg", class: "card-img-top"
+            - elsif !student.profile_picture.attached? && student.gender == "female"
+              = image_tag "female_ico.jpg", class: "card-img-top"
             - else
               = image_tag "no-image.png", class: "card-img-top"
           div

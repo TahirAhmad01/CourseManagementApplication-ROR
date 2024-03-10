@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum gender: { male: 0, female: 1, other: 2 }
+  enum gender: { male: 0, female: 1 }
   belongs_to :semester
   has_many :enrolled_courses, foreign_key: 'users_id'
   has_one_attached :profile_picture
@@ -11,4 +11,5 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :birthdate, presence: true
+  validates :gender, presence: true
 end
