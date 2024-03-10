@@ -33,6 +33,6 @@ body {
   display: block !important;
 }
 
-.is-invalid{
-  border-color: #fd4444 !important;
+.is-invalid, .field_with_errors select{
+  border-color: #ff7676 !important;
 }
