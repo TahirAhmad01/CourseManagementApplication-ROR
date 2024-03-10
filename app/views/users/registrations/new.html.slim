@@ -2,25 +2,32 @@
   h2 Sign up user
 
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = render "users/shared/error_messages", resource: resource
 
     .row
       .field.col-6
         = f.label :first_name
-        = f.text_field :first_name, autofocus: true
+        = f.text_field :first_name, autofocus: true, class: ('is-invalid' if resource.errors.include?(:first_name))
+        - if resource.errors.include?(:first_name)
+          .invalid-feedback
+            = resource.errors.full_messages_for(:first_name).join(", ")
+
       .field.col-6
         = f.label :last_name
-        = f.text_field :last_name
+        = f.text_field :last_name, class: ('is-invalid' if resource.errors.include?(:last_name))
+        - if resource.errors.include?(:last_name)
+          .invalid-feedback
+            = resource.errors.full_messages_for(:last_name).join(", ")
 
     .field
       = f.label :email
-      br
-      = f.email_field :email, autocomplete: "email"
+      = f.email_field :email, autocomplete: "email", class: ('is-invalid' if resource.errors.include?(:email))
+      - if resource.errors.include?(:email)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:email).join(", ")
 
     .row
       .field.col-6
         = f.label :semester_id
-        br
         - if Semester.any?
           = f.text_field :semester_name, value: Semester.first&.semester_name, class: "form-control", readonly: true
           = f.hidden_field :semester_id, value: Semester.first&.id
@@ -30,26 +37,36 @@
 
       .field.col-6
         = f.label :birthdate
-        = f.date_field :birthdate
+        = f.date_field :birthdate, class: ('is-invalid' if resource.errors.include?(:gender))
+        - if resource.errors.include?(:birthdate)
+          .invalid-feedback
+            = resource.errors.full_messages_for(:birthdate).join(", ")
 
     .field
       = f.label :gender
-      br
-      = f.select :gender, User.genders.keys, prompt: "Select Gender"
+      = f.select :gender, User.genders.keys, prompt: "Select Gender", class: ('is-invalid' if resource.errors.include?(:gender))
+      - if resource.errors.include?(:gender)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:gender).join(", ")
 
     .field
       = f.label :password
       - if @minimum_password_length
         em
         | (#{@minimum_password_length} characters minimum)
-      br
-      = f.password_field :password, autocomplete: "new-password"
+      = f.password_field :password, autocomplete: "new-password", class: ('is-invalid' if resource.errors.include?(:password))
+      - if resource.errors.include?(:password)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:password).join(", ")
 
     .field
       = f.label :password_confirmation
-      br
-      = f.password_field :password_confirmation, autocomplete: "new-password"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: ('is-invalid' if resource.errors.include?(:password_confirmation))
+      - if resource.errors.include?(:password_confirmation)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:password_confirmation).join(", ")
 
     .actions
       = f.submit "Sign up", class: "btn btn-primary navbar__right button"
+
   = render "users/shared/links"

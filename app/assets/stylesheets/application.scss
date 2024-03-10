@@ -28,3 +28,11 @@ body {
 .card {
   margin-bottom: 15px;
 }
+
+.invalid-feedback{
+  display: block !important;
+}
+
+.is-invalid{
+  border-color: #fd4444 !important;
+}

@@ -2,20 +2,35 @@
   h2
     | Sign up admin
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = render "admins/shared/error_messages", resource: resource
+
     .row
       .field.col-6
         = f.label :first_name
-        = f.text_field :first_name, autofocus: true
+        = f.text_field :first_name, autofocus: true, class: ('is-invalid' if resource.errors.include?(:first_name))
+        - if resource.errors.include?(:first_name)
+          .invalid-feedback
+            = resource.errors.full_messages_for(:first_name).join(", ")
+
       .field.col-6
         = f.label :last_name
-        = f.text_field :last_name, autofocus: true
+        = f.text_field :last_name, autofocus: true, class: ('is-invalid' if resource.errors.include?(:last_name))
+        - if resource.errors.include?(:last_name)
+          .invalid-feedback
+            = resource.errors.full_messages_for(:last_name).join(", ")
+
     .field
       = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: ('is-invalid' if resource.errors.include?(:email))
+      - if resource.errors.include?(:email)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:email).join(", ")
+
     .field
       = f.label :gender
-      = f.select :gender, User.genders.keys, prompt: "Select Gender"
+      = f.select :gender, User.genders.keys, prompt: "Select Gender", class: ('is-invalid' if resource.errors.include?(:gender))
+      - if resource.errors.include?(:gender)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:gender).join(", ")
     .field
       = f.label :password
       - if @minimum_password_length
@@ -23,10 +38,20 @@
           | (
           = @minimum_password_length
           |  characters minimum)
-      = f.password_field :password, autocomplete: "new-password"
+      = f.password_field :password, autocomplete: "new-password", class: ('is-invalid' if resource.errors.include?(:password))
+      - if resource.errors.include?(:password)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:password).join(", ")
+
     .field
       = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: "new-password"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: ('is-invalid' if resource.errors.include?(:password_confirmation))
+      - if resource.errors.include?(:password_confirmation)
+        .invalid-feedback
+          = resource.errors.full_messages_for(:password_confirmation).join(", ")
+
     .actions
       = f.submit "Sign up", class: "btn btn-primary navbar__right button"
+
   = render "admins/shared/links"
+
