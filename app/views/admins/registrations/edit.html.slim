@@ -12,9 +12,12 @@ h2
       div.field.col-6
         = f.label :last_name
         = f.text_field :last_name
-    div.field
+    .field
       = f.label :email
       = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :gender
+      = f.select :gender, User.genders.keys, prompt: "Select Gender"
 
     .mb-3
       = f.label :admin_profile_picture, class: "form-label"
@@ -31,7 +34,6 @@ h2
         | ( leave blank if you don't want to change it )
       = f.password_field :password, autocomplete: "new-password"
       - if @minimum_password_length
-        br
         em
           = @minimum_password_length
           | characters minimum

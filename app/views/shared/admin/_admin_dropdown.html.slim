@@ -4,6 +4,10 @@ ul.navbar-nav.ms-auto.mb-2.mb-lg-0.profile-menu
       .profile-pic
         - if current_admin.admin_profile_picture.attached?
           = image_tag current_admin.admin_profile_picture
+        - elsif !current_admin.admin_profile_picture.attached? && current_admin.gender == "male"
+          = image_tag "male_ico.jpg", class: "card-img-top"
+        - elsif !current_admin.admin_profile_picture.attached? && current_admin.gender == "female"
+          = image_tag "female_ico.jpg", class: "card-img-top"
         - else
           = image_tag "no-image.png", class: "card-img-top"
     ul.dropdown-menu[aria-labelledby="navbarDropdown"]

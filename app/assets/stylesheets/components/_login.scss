@@ -23,14 +23,17 @@
   .field input, .field select {
     //font-family: $font-family;
     width: 100%;
-    margin: 0 0 15px;
-    padding: 7px 12px;
+    margin: 0 0 9px !important;
+    height: 42px;
+    padding: 7px 12px !important;
     outline: 0;
     font-size: 15px;
     box-sizing: border-box;
     border: 2px solid #ddd;
     border-radius: 5px;
-
+    background: white;
+    display: block;
+    text-transform: capitalize;
 
     ::placeholder {
       color: #90A4AE;

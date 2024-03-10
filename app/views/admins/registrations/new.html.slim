@@ -10,23 +10,23 @@
       .field.col-6
         = f.label :last_name
         = f.text_field :last_name, autofocus: true
-      .field
-        = f.label :email
-        br
-        = f.email_field :email, autofocus: true, autocomplete: "email"
-      .field
-        = f.label :password
-        - if @minimum_password_length
-          em
-            | (
-            = @minimum_password_length
-            |  characters minimum)
-        br
-        = f.password_field :password, autocomplete: "new-password"
-      .field
-        = f.label :password_confirmation
-        br
-        = f.password_field :password_confirmation, autocomplete: "new-password"
-      .actions
-        = f.submit "Sign up", class: "btn btn-primary navbar__right button"
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :gender
+      = f.select :gender, User.genders.keys, prompt: "Select Gender"
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        em
+          | (
+          = @minimum_password_length
+          |  characters minimum)
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .actions
+      = f.submit "Sign up", class: "btn btn-primary navbar__right button"
   = render "admins/shared/links"
