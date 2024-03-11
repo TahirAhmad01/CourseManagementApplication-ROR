@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
   it 'is valid with a first name and last name' do
-    admin = Admin.new(first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password')
+    admin = Admin.new(first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password', gender: 0)
     expect(admin).to be_valid
   end
 
