@@ -13,9 +13,9 @@ begin
     rescue => e
       puts "Error creating course: #{e.message}"
     end
-  end
+    end
+  puts "======== course data inserted ==========="
 rescue => e
   puts "Error loading YAML file: #{e.message}"
 end
 
-puts "======== course data inserted ==========="
